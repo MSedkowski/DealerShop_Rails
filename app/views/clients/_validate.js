@@ -1,20 +1,18 @@
 $("#new_client").validate({
   //error place
   errorPlacement: function (error, element) {
-    error.insertBefore(element);
+    error.appendTo( element.parent("div").next("div") );
   },
 //adding rule
   rules: {
   // username is required with max of 20 and min of 6
   "client[name]":{
     required: true,
-    maxlength: 20,
-    minlength: 6
+    minlength: 3
   },
   "client[surname]":{
     required: true,
-    maxlength: 20,
-    minlength: 6
+    minlength: 3
   },
   // email is required with format
   "client[email]": {
@@ -26,28 +24,31 @@ $("#new_client").validate({
     required: true
   },
   //password_confirmation is required and is the same with password
-  "client[password_confirmation]": {
+  "client[confirmation]": {
     required: true,
     equalTo: "#client_password"
-  },
+  }
 },
   //error messages
   messages: {
     "client[name]":{
       required: "Należy podać imię.",
-      maxlength: "Imię może zawierać maksymalnie 20 znaków",
-      minlength: "Imię nie może być krótsze niż 6 znaków"
-    // },
-    // email:{
-    //   required: "Email is required",
-    //   email: "Please enter a valid email address"
-    // },
-    // password: {
-    //   required: "Password is required"
-    // },
-    // password_confirmation: {
-    //   required: "Password confirmation is required",
-    //   equalTo: "Password and password confirmation must be same"
+      minlength: "Imię nie może być krótsze niż 3 znaków"
+    },
+    "client[surname]":{
+      required: "Należy podać nazwisko.",
+      minlength: "Nazwisko nie może być krótsze niż 3 znaków"
+    },
+    "client[email]":{
+       required: "Należy podać adres e-mail",
+       email: "Proszę podać poprawny adres e-mail adres@domena.pl"
+    },
+    "client[password]": {
+       required: "Proszę podać hasło"
+    },
+    "client[confirmation]": {
+       required: "Proszę ponownie podać hasło",
+       equalTo: "Podane hasła różnią się"
      }
   }
 });
