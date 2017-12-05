@@ -1,0 +1,66 @@
+#submit-button {
+	padding: 0;
+}
+#submit-icon {
+	margin-left: 0 !important;
+	margin-right: 12px;
+	padding: 0;
+}
+.without-padding-left {
+	padding-left: 0 !important;
+}
+.without-padding-right {
+	padding-right: 0 !important;
+}
+
+.add-client {
+	margin-bottom: 10px !important;
+}
+
+.add-client-back {
+	margin-bottom: 10px !important;
+}
+
+.add-client-header {
+	margin-top: 60px;
+	margin-bottom: 10px !important;
+}
+
+body {
+	background-image: url("background.jpg");
+}
+
+.registration-field {
+	background-color: rgba(255,255,255,0.7);
+}
+
+::-webkit-input-placeholder {
+    color: #000000 !important;
+    opacity: 1 !important; /* for older chrome versions. may no longer apply. */
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    color: #000000 !important;
+    opacity: 1 !important;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+    color: #000000 !important;
+    opacity: 1 !important;
+}
+
+:-ms-input-placeholder {  
+   color: #000000 !important;
+}
+
+#back-button {
+	width: 100px;
+	height: 24px;
+	font-size: 0.6rem;
+	line-height: 0;
+	padding: 0;
+	
+	a {
+		color: white !important;
+	}
+}

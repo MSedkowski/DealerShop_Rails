@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ordered Cars</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Car</th>
+      <th>Client</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ordered_cars.each do |ordered_car| %>
+      <tr>
+        <td><%= ordered_car.car %></td>
+        <td><%= ordered_car.client %></td>
+        <td><%= ordered_car.status %></td>
+        <td><%= link_to 'Show', ordered_car %></td>
+        <td><%= link_to 'Edit', edit_ordered_car_path(ordered_car) %></td>
+        <td><%= link_to 'Destroy', ordered_car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ordered Car', new_ordered_car_path %>

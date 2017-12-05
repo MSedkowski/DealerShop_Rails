@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Supply:</strong>
+  <%= @supplies_element.supply %>
+</p>
+
+<p>
+  <strong>Element:</strong>
+  <%= @supplies_element.element %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @supplies_element.amount %>
+</p>
+
+<%= link_to 'Edit', edit_supplies_element_path(@supplies_element) %> |
+<%= link_to 'Back', supplies_elements_path %>

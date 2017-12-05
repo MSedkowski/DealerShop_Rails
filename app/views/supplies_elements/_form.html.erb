@@ -1,0 +1,32 @@
+<%= form_with(model: supplies_element, local: true) do |form| %>
+  <% if supplies_element.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(supplies_element.errors.count, "error") %> prohibited this supplies_element from being saved:</h2>
+
+      <ul>
+      <% supplies_element.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :supply_id %>
+    <%= form.text_field :supply_id, id: :supplies_element_supply_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :element_id %>
+    <%= form.text_field :element_id, id: :supplies_element_element_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :amount %>
+    <%= form.number_field :amount, id: :supplies_element_amount %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,37 @@
+<%= form_with(model: cars_to_sell, local: true) do |form| %>
+  <% if cars_to_sell.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(cars_to_sell.errors.count, "error") %> prohibited this cars_to_sell from being saved:</h2>
+
+      <ul>
+      <% cars_to_sell.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :brand %>
+    <%= form.text_field :brand, id: :cars_to_sell_brand %>
+  </div>
+
+  <div class="field">
+    <%= form.label :model %>
+    <%= form.text_field :model, id: :cars_to_sell_model %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price, id: :cars_to_sell_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :additional_information %>
+    <%= form.text_field :additional_information, id: :cars_to_sell_additional_information %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

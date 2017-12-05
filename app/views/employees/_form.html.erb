@@ -1,0 +1,67 @@
+<%= form_with(model: employee, local: true) do |form| %>
+  <% if employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+
+      <ul>
+      <% employee.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :employee_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :surname %>
+    <%= form.text_field :surname, id: :employee_surname %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, id: :employee_email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone_number %>
+    <%= form.number_field :phone_number, id: :employee_phone_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.text_field :password, id: :employee_password %>
+  </div>
+
+  <div class="field">
+    <%= form.label :position %>
+    <%= form.text_field :position, id: :employee_position %>
+  </div>
+
+  <div class="field">
+    <%= form.label :salary %>
+    <%= form.text_field :salary, id: :employee_salary %>
+  </div>
+
+  <div class="field">
+    <%= form.label :days_of_paid_leave %>
+    <%= form.number_field :days_of_paid_leave, id: :employee_days_of_paid_leave %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_of_employment %>
+    <%= form.date_select :date_of_employment, id: :employee_date_of_employment %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bonuses %>
+    <%= form.text_field :bonuses, id: :employee_bonuses %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

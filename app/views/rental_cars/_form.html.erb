@@ -1,0 +1,32 @@
+<%= form_with(model: rental_car, local: true) do |form| %>
+  <% if rental_car.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(rental_car.errors.count, "error") %> prohibited this rental_car from being saved:</h2>
+
+      <ul>
+      <% rental_car.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :brand %>
+    <%= form.text_field :brand, id: :rental_car_brand %>
+  </div>
+
+  <div class="field">
+    <%= form.label :model %>
+    <%= form.text_field :model, id: :rental_car_model %>
+  </div>
+
+  <div class="field">
+    <%= form.label :additional_information %>
+    <%= form.text_field :additional_information, id: :rental_car_additional_information %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

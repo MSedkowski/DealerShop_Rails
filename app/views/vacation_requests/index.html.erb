@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Vacation Requests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @vacation_requests.each do |vacation_request| %>
+      <tr>
+        <td><%= link_to 'Show', vacation_request %></td>
+        <td><%= link_to 'Edit', edit_vacation_request_path(vacation_request) %></td>
+        <td><%= link_to 'Destroy', vacation_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Vacation Request', new_vacation_request_path %>

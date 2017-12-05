@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Rental Cars</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Brand</th>
+      <th>Model</th>
+      <th>Additional information</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rental_cars.each do |rental_car| %>
+      <tr>
+        <td><%= rental_car.brand %></td>
+        <td><%= rental_car.model %></td>
+        <td><%= rental_car.additional_information %></td>
+        <td><%= link_to 'Show', rental_car %></td>
+        <td><%= link_to 'Edit', edit_rental_car_path(rental_car) %></td>
+        <td><%= link_to 'Destroy', rental_car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Rental Car', new_rental_car_path %>

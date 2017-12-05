@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Service Centers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Brand</th>
+      <th>Model</th>
+      <th>License plate</th>
+      <th>Status</th>
+      <th>Client</th>
+      <th>Mechanic</th>
+      <th>Beginning date</th>
+      <th>End date</th>
+      <th>Cost</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @service_centers.each do |service_center| %>
+      <tr>
+        <td><%= service_center.brand %></td>
+        <td><%= service_center.model %></td>
+        <td><%= service_center.license_plate %></td>
+        <td><%= service_center.status %></td>
+        <td><%= service_center.client %></td>
+        <td><%= service_center.mechanic %></td>
+        <td><%= service_center.beginning_date %></td>
+        <td><%= service_center.end_date %></td>
+        <td><%= service_center.cost %></td>
+        <td><%= link_to 'Show', service_center %></td>
+        <td><%= link_to 'Edit', edit_service_center_path(service_center) %></td>
+        <td><%= link_to 'Destroy', service_center, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Service Center', new_service_center_path %>

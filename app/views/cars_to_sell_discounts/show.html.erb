@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Car:</strong>
+  <%= @cars_to_sell_discount.car %>
+</p>
+
+<p>
+  <strong>Discount:</strong>
+  <%= @cars_to_sell_discount.discount %>
+</p>
+
+<%= link_to 'Edit', edit_cars_to_sell_discount_path(@cars_to_sell_discount) %> |
+<%= link_to 'Back', cars_to_sell_discounts_path %>

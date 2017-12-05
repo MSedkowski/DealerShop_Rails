@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Brand:</strong>
+  <%= @rental_car.brand %>
+</p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @rental_car.model %>
+</p>
+
+<p>
+  <strong>Additional information:</strong>
+  <%= @rental_car.additional_information %>
+</p>
+
+<%= link_to 'Edit', edit_rental_car_path(@rental_car) %> |
+<%= link_to 'Back', rental_cars_path %>

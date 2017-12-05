@@ -1,0 +1,17 @@
+<%= form_with(model: vacation_request, local: true) do |form| %>
+  <% if vacation_request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(vacation_request.errors.count, "error") %> prohibited this vacation_request from being saved:</h2>
+
+      <ul>
+      <% vacation_request.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

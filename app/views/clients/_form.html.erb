@@ -1,0 +1,58 @@
+<div class="row add-client">
+<%= form_for @client do |form| %>
+  <% if client.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(client.errors.count, "error") %> prohibited this client from being saved:</h2>
+
+      <ul>
+      <% client.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+
+<div class="row add-client">      
+  <div id="client-input" class="input-field col l4 offset-l2">
+    <%= form.text_field :name, id: :client_name, :class => "required", placeholder: "Imię"%>
+  </div>
+
+  <div id="client-input" class="input-field col l4">
+    <%= form.text_field :surname, id: :client_surname, :class => "required", placeholder: "Nazwisko"%>
+  </div>
+</div>
+
+<div class="row add-client">      
+  <div id="client-input" class="input-field col l4 offset-l2">
+    <%= form.text_field :email, id: :client_email, class: "validate", placeholder: "Email"%>
+  </div>
+
+  <div id="client-input" class="input-field col l4">
+    <%= form.text_field :phone_number, id: :client_phone_number, class: "validate", placeholder: "Nr telefonu"%>
+  </div>
+</div>
+
+<div class="col l8 offset-l2">
+<div class="row add-client">
+  <div id="client-input" class="input-field col l6 without-padding-left">
+    <%= form.text_field :password, id: :client_password, class: "validate", type: "password", placeholder: "Hasło"%>
+  </div>
+
+  <div id="client-input" class="input-field col l6 without-padding-right">
+    <%= form.text_field :password_was, id: :client_password_confirmation, class: "validate", type: "password", placeholder: "Potwierdź hasło"%>
+  </div>
+</div>
+
+<div class="row add-client">
+    <button id="submit-button" class="btn waves-effect waves-light right" type="submit" name="action">
+      <i id="submit-icon" class="material-icons right">send</i>
+    <%= form.submit "Zapisz"%>
+    </button>
+</div>
+</div>
+<% end %>
+</div>
+<script type="text/javascript">
+  <%= render "validate.js" %>
+</script>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Service:</strong>
+  <%= @service_fault.service %>
+</p>
+
+<p>
+  <strong>Fault:</strong>
+  <%= @service_fault.fault %>
+</p>
+
+<%= link_to 'Edit', edit_service_fault_path(@service_fault) %> |
+<%= link_to 'Back', service_faults_path %>

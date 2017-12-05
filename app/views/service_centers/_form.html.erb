@@ -1,0 +1,62 @@
+<%= form_with(model: service_center, local: true) do |form| %>
+  <% if service_center.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(service_center.errors.count, "error") %> prohibited this service_center from being saved:</h2>
+
+      <ul>
+      <% service_center.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :brand %>
+    <%= form.text_field :brand, id: :service_center_brand %>
+  </div>
+
+  <div class="field">
+    <%= form.label :model %>
+    <%= form.text_field :model, id: :service_center_model %>
+  </div>
+
+  <div class="field">
+    <%= form.label :license_plate %>
+    <%= form.text_field :license_plate, id: :service_center_license_plate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status, id: :service_center_status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :client_id %>
+    <%= form.text_field :client_id, id: :service_center_client_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mechanic %>
+    <%= form.number_field :mechanic, id: :service_center_mechanic %>
+  </div>
+
+  <div class="field">
+    <%= form.label :beginning_date %>
+    <%= form.date_select :beginning_date, id: :service_center_beginning_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_date %>
+    <%= form.date_select :end_date, id: :service_center_end_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cost %>
+    <%= form.text_field :cost, id: :service_center_cost %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

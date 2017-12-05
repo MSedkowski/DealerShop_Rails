@@ -1,0 +1,2 @@
+class CarsToSell < ApplicationRecord
+end
