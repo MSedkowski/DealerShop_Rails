@@ -32,7 +32,8 @@
   </div>
 
   <div id="client-input" class="input-field col l4">
-    <%= form.text_field :phone_number, id: :client_phone_number, placeholder: "Nr telefonu"%>
+    <%= form.text_field :phone_number, id: :client_phone_number, placeholder: "Nr telefonu", maxlength: 9%>
+    <label for="client_phone_number" generated="true" class="error error_label"></label>
   </div>
 </div>
 

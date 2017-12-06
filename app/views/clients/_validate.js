@@ -19,6 +19,9 @@ $("#new_client").validate({
     required: true,
     email: true
   },
+  "client[phone_number]": {
+    pattern: /[0-9]+$/
+  },
   // password is required
   "client[password]": {
     required: true
@@ -42,6 +45,9 @@ $("#new_client").validate({
     "client[email]":{
        required: "Należy podać adres e-mail",
        email: "Proszę podać poprawny adres e-mail adres@domena.pl"
+    },
+    "client[phone_number]": {
+      pattern: "Podaj numer telefonu w formacie 9 cyfrowym"
     },
     "client[password]": {
        required: "Proszę podać hasło"
