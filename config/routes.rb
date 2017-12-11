@@ -1,8 +1,23 @@
 Rails.application.routes.draw do
   
-	resources :clients
+  get 'main/index'
 
-  root 'clients#index'
+	resources :clients
+  resources :employees
+  resources :cars_to_sells
+  resources :vacations
+  resources :vacation_requests
+  resources :ordered_cars
+  resources :cars_to_sell_discounts
+  resources :rentings
+  resources :rental_cars
+  resources :warehouses
+  resources :service_centers
+  resources :faults
+  resources :suppliers
+  resources :supplies
+
+  root 'main#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
