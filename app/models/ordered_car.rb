@@ -1,4 +1,4 @@
 class OrderedCar < ApplicationRecord
-  belongs_to :car
+  has_many :cars_to_sell
   belongs_to :client
 end
