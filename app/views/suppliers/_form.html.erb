@@ -1,4 +1,5 @@
-<%= form_with(model: supplier, local: true) do |form| %>
+
+<%= form_for @supplier do |form| %>
   <% if supplier.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(supplier.errors.count, "error") %> prohibited this supplier from being saved:</h2>
@@ -11,12 +12,17 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :data %>
-    <%= form.text_field :data, id: :supplier_data %>
-  </div>
+    <div class="row add-supplier">
+      <div id="supplier-input" class="input-field col l8 offset-l2">
+        <%= form.text_field :data, id: :supplier_data, placeholder: 'Wprowadź pełną nazwę dostawcy' %>
+        <label for="supplier_data" generated="true" class="error error_label"></label>
+      </div>
+    </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <div class="row add-supply-item">
+      <button id="submit-button" class="btn waves-effect waves-light right" type="submit" name="action">
+        <i id="submit-icon" class="material-icons right">send</i>
+        <%= form.submit "Zapisz"%>
+      </button>
+    </div>
 <% end %>
