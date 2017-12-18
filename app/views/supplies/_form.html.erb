@@ -1,4 +1,5 @@
-<%= form_with(model: supply, local: true) do |form| %>
+<div class="row add-supply-item">
+<%= form_for @supply do |form| %>
   <% if supply.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(supply.errors.count, "error") %> prohibited this supply from being saved:</h2>
@@ -11,22 +12,47 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :date %>
-    <%= form.date_select :date, id: :supply_date %>
-  </div>
+    <div class="row add-supply-item">
+      <div id="supply-item-input" class="input-field col l4">
+        <%= form.text_field :date, id: :supply_date, class: "datepicker", placeholder: 'Podaj datę' %>
+        <label for="supply_date" generated="true" class="error error_label"></label>
+      </div>
 
-  <div class="field">
-    <%= form.label :supplier_id %>
-    <%= form.text_field :supplier_id, id: :supply_supplier_id %>
-  </div>
+      <div id="supply-item-input" class="input-field col l4">
+        <%= form.text_field :supplier_id, id: :supply_supplier_id, placeholder: 'Podaj numer dostawcy' %>
+        <label for="supply_supplier_id" generated="true" class="error error_label"></label>
+      </div>
 
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status, id: :supply_status %>
-  </div>
+      <div id="warehouse-item-input" class="input-field col l4">
+        <%= form.select(:status) do %>
+          <% [['Zamówiono', 'Zamówiono'], ['Dostarczono', 'Dostarczono'], ['Wydano', 'Wydano']]
+                 .each do |c| -%>
+            <%= content_tag(:option, c.first, value: c.last) %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <div class="row add-supply-item">
+      <button id="submit-button" class="btn waves-effect waves-light right" type="submit" name="action">
+        <i id="submit-icon" class="material-icons right">send</i>
+        <%= form.submit "Zapisz"%>
+      </button>
+    </div>
 <% end %>
+</div>
+<script>
+    $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15, // Creates a dropdown of 15 years to control year,
+        today: 'Today',
+        clear: 'Clear',
+        close: 'Ok',
+        closeOnSelect: false // Close upon selecting a date,
+    });
+    $(document).ready(function() {
+        $('select').material_select({
+            belowOrigin: true
+        });
+    });
+</script>
