@@ -19,17 +19,24 @@
       </div>
 
       <div id="supply-item-input" class="input-field col l4">
-        <%= form.text_field :supplier_id, id: :supply_supplier_id, placeholder: 'Podaj numer dostawcy' %>
+        <% supplier_array = Supplier.all.map { |supplier| [supplier.data, supplier.id] } %>
+        <%= form.select(:supplier_id, options_for_select(supplier_array), :prompt => 'Wybierz dostawcę')%>
         <label for="supply_supplier_id" generated="true" class="error error_label"></label>
       </div>
 
+      <div id="supply-item-input" class="input-field col l4">
+        <% product_array = Warehouse.all.map { |warehouse| [warehouse.element, warehouse.id] } %>
+        <%= form.select(:product_id, options_for_select(product_array), :prompt => 'Wybierz produkt')%>
+        <label for="supply_supplier_id" generated="true" class="error error_label"></label>
+      </div>
+
+      <div id="supply-item-input" class="input-field col l4">
+        <%= form.text_field :amount, id: :supply_amount, placeholder: 'Podaj ilość' %>
+        <label for="supply_date" generated="true" class="error error_label"></label>
+      </div>
+
       <div id="warehouse-item-input" class="input-field col l4">
-        <%= form.select(:status) do %>
-          <% [['Zamówiono', 'Zamówiono'], ['Dostarczono', 'Dostarczono'], ['Wydano', 'Wydano']]
-                 .each do |c| -%>
-            <%= content_tag(:option, c.first, value: c.last) %>
-          <% end %>
-        <% end %>
+        <%= form.select(:status, [['Niski', 'Niski'], ['Średni', 'Średni'], ['Wysoki', 'Wysoki']], :prompt => 'Wybierz priorytet') %>
       </div>
     </div>
 
@@ -42,19 +49,25 @@
 <% end %>
 </div>
 <script>
-    $('.datepicker').pickadate({
-        selectMonths: true, // Creates a dropdown to control month
-        selectYears: 15, // Creates a dropdown of 15 years to control year,
+    $.extend($.fn.pickadate.defaults, {
         monthsFull: [ 'Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień' ],
         monthsShort: [ 'Sty', 'Lut', 'Mar', 'Kwi', 'Maj', 'Cze', 'Lip', 'Sie', 'Wrz', 'Paź', 'Lis', 'Gru' ],
         weekdaysFull: [ 'Niedziela', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota' ],
         weekdaysShort: [ 'Nie', 'Pon', 'Wto', 'Śro', 'Czw', 'Pią', 'Sob' ],
-//Materialize modified
         weekdaysLetter: [ 'N', 'P', 'W', 'Ś', 'C', 'P', 'S' ],
         today: 'Dziś',
         clear: 'Wyczyść',
         close: 'Zatwierdź',
-        closeOnSelect: false // Close upon selecting a date,
+        formatSubmit: 'yyyy-mm-dd'
+    });
+    $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15, // Creates a dropdown of 15 years to control year,
+        firstDay: 1,
+        max: new Date(<%Date.today.to_s%>),
+        formatSubmit: 'yyyy-mm-dd',
+        hiddenName: true,
+        closeOnSelect: true
     });
     $(document).ready(function() {
         $('select').material_select({

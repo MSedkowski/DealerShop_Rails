@@ -13,9 +13,14 @@
   <% end %>
 
     <div class="row add-supplier">
-      <div id="supplier-input" class="input-field col l8 offset-l2">
+      <div id="supplier-input" class="input-field col l4 offset-l2">
         <%= form.text_field :data, id: :supplier_data, placeholder: 'Wprowadź pełną nazwę dostawcy' %>
         <label for="supplier_data" generated="true" class="error error_label"></label>
+      </div>
+
+      <div id="supplier-input" class="input-field col l4">
+        <%= form.text_field :products, id: :supplier_products, placeholder: 'Wprowadź oferowane produkty' %>
+        <label for="supplier_products" generated="true" class="error error_label"></label>
       </div>
     </div>
 

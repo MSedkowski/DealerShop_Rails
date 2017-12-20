@@ -69,6 +69,6 @@ class SuppliesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def supply_params
-      params.require(:supply).permit(:date, :supplier_id, :status)
+      params.require(:supply).permit(:date, :supplier_id, :product_id, :amount, :status)
     end
 end

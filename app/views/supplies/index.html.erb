@@ -1,5 +1,5 @@
 <div class="main-field">
-  <div class="row">
+  <div class="row header-row">
     <h3 class="col s6 offset-s3" id="supply-list-header">Zamówienia</h3>
   </div>
   <div class="row">
@@ -8,6 +8,8 @@
     <tr>
       <th>Data</th>
       <th>Dostawca</th>
+      <th>Produkt</th>
+      <th>Ilość</th>
       <th>Status</th>
       <th colspan="3"></th>
     </tr>
@@ -15,9 +17,13 @@
 
   <tbody>
     <% @supplies.each do |supply| %>
+    <% suplier = Supplier.find(supply.supplier_id)%>
+    <% element = Warehouse.find(supply.product_id)%>
       <tr>
         <td><%= supply.date %></td>
-        <td><%= supply.supplier %></td>
+        <td><%= suplier.data %></td>
+        <td><%= element.element %></td>
+        <td><%= supply.amount %></td>
         <td><%= supply.status %></td>
         <td><%= link_to 'Pokaż', supply %></td>
         <td><%= link_to 'Edytuj', edit_supply_path(supply) %></td>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20171220094928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,11 +32,11 @@ ActiveRecord::Schema.define(version: 0) do
     t.string "surname", limit: 20, null: false
     t.string "email", limit: 30, null: false
     t.string "phone_number", limit: 9, null: false
-    t.string "password", limit: 40, null: false
-    t.integer "employee", null: false
-    t.boolean "use_renting", null: false
-    t.boolean "use_service", null: false
-    t.boolean "buy_car", null: false
+    t.string "password", null: false
+    t.integer "employee"
+    t.boolean "use_renting"
+    t.boolean "use_service"
+    t.boolean "buy_car"
     t.index ["email"], name: "email unique", unique: true
     t.index ["phone_number"], name: "phone_number unique", unique: true
   end
@@ -108,15 +108,18 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "suppliers", id: :serial, force: :cascade do |t|
     t.string "data", limit: 100, null: false
+    t.string "products"
   end
 
   create_table "supplies", id: :serial, force: :cascade do |t|
     t.date "date", null: false
     t.integer "supplier_id", null: false
     t.string "status", limit: 30, null: false
+    t.integer "product_id"
+    t.integer "amount"
   end
 
-  create_table "supplies_element", id: :serial, force: :cascade do |t|
+  create_table "supplies_elements", id: :integer, default: -> { "nextval('supplies_element_id_seq'::regclass)" }, force: :cascade do |t|
     t.integer "supply_id", null: false
     t.integer "element_id", null: false
     t.integer "amount", null: false
@@ -154,8 +157,8 @@ ActiveRecord::Schema.define(version: 0) do
   add_foreign_key "service_faults", "faults", name: "fault_id"
   add_foreign_key "service_faults", "service_center", column: "service_id", name: "service_id"
   add_foreign_key "supplies", "suppliers", name: "supplier_id"
-  add_foreign_key "supplies_element", "supplies", name: "supply_id"
-  add_foreign_key "supplies_element", "warehouse", column: "element_id", name: "element_id"
+  add_foreign_key "supplies_elements", "supplies", name: "supply_id"
+  add_foreign_key "supplies_elements", "warehouse", column: "element_id", name: "element_id"
   add_foreign_key "vacation_requests", "employees", column: "emplyee_id", name: "employee_id"
   add_foreign_key "vacations", "employees", name: "employee_id"
 end
