@@ -19,9 +19,8 @@
           <td><%= warehouse.element %></td>
           <td><%= warehouse.amount %></td>
           <td><%= warehouse.status %></td>
-          <td class="link"><%= link_to 'Szczegóły', warehouse %></td>
           <td class="link"><%= link_to 'Edycja', edit_warehouse_path(warehouse) %></td>
-          <td class="link"><%= link_to 'Usuń', warehouse, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td class="link"><%= link_to 'Usuń', warehouse, method: :delete, data: { confirm: 'Czy jesteś pewien?' } %></td>
         </tr>
       <% end %>
       </tbody>

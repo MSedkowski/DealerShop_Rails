@@ -27,9 +27,10 @@
         <td><%= element.element %></td>
         <td><%= supply.amount %></td>
         <td><%= supply.status %></td>
-        <td><%= link_to 'Pokaż', supply %></td>
-        <td><%= link_to 'Edytuj', edit_supply_path(supply) %></td>
-        <td><%= link_to 'Usuń', supply, method: :delete, data: { confirm: 'Czy jesteś pewien?' } %></td>
+        <td><% if (supply.status != 'Odebrano')%> <%= link_to 'Edytuj', edit_supply_path(supply) %> <%end%></td>
+        <td><% if (supply.status != 'Odebrano')%>
+            <%= link_to 'Usuń', supply, method: :delete, data: { confirm: 'Czy jesteś pewien?' } %>
+            <%end %></td>
       </tr>
     <% end %>
   </tbody>
