@@ -25,6 +25,12 @@
     </div>
 
     <div class="row add-supply-item">
+      <div class="btn right">
+        <span>
+          <%= link_to 'Anuluj', supplies_path %>
+          <i class="material-icons right">cancel</i>
+        </span>
+      </div>
       <button id="submit-button" class="btn waves-effect waves-light right" type="submit" name="action">
         <i id="submit-icon" class="material-icons right">send</i>
         <%= form.submit "Zapisz"%>

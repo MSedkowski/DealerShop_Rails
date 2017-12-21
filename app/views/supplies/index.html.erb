@@ -6,6 +6,7 @@
     <table class="striped col l10 offset-l1">
   <thead>
     <tr>
+      <th>Id</th>
       <th>Data</th>
       <th>Dostawca</th>
       <th>Produkt</th>
@@ -20,6 +21,7 @@
     <% suplier = Supplier.find(supply.supplier_id)%>
     <% element = Warehouse.find(supply.product_id)%>
       <tr>
+        <td><%= supply.id %></td>
         <td><%= supply.date %></td>
         <td><%= suplier.data %></td>
         <td><%= element.element %></td>

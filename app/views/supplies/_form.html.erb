@@ -13,34 +13,36 @@
   <% end %>
 
     <div class="row add-supply-item">
-      <div id="supply-item-input" class="input-field col l4">
-        <%= form.text_field :date, id: :supply_date, class: "datepicker", placeholder: 'Podaj datę' %>
-        <label for="supply_date" generated="true" class="error error_label"></label>
-      </div>
-
-      <div id="supply-item-input" class="input-field col l4">
-        <% supplier_array = Supplier.all.map { |supplier| [supplier.data, supplier.id] } %>
+      <div id="supply-item-input" class="input-field col l5">
+        <% supplier_array = Supplier.all.map { |supplier| [supplier.data + " | " + supplier.products, supplier.id] } %>
         <%= form.select(:supplier_id, options_for_select(supplier_array), :prompt => 'Wybierz dostawcę')%>
         <label for="supply_supplier_id" generated="true" class="error error_label"></label>
       </div>
 
-      <div id="supply-item-input" class="input-field col l4">
+      <div id="supply-item-input" class="input-field col l3">
         <% product_array = Warehouse.all.map { |warehouse| [warehouse.element, warehouse.id] } %>
         <%= form.select(:product_id, options_for_select(product_array), :prompt => 'Wybierz produkt')%>
         <label for="supply_supplier_id" generated="true" class="error error_label"></label>
       </div>
 
-      <div id="supply-item-input" class="input-field col l4">
+      <div id="supply-item-input" class="input-field col l1">
         <%= form.text_field :amount, id: :supply_amount, placeholder: 'Podaj ilość' %>
         <label for="supply_date" generated="true" class="error error_label"></label>
       </div>
 
-      <div id="warehouse-item-input" class="input-field col l4">
-        <%= form.select(:status, [['Niski', 'Niski'], ['Średni', 'Średni'], ['Wysoki', 'Wysoki']], :prompt => 'Wybierz priorytet') %>
+      <div id="warehouse-item-input" class="input-field col l3">
+        <%= form.select(:status, [['Zebrano', 'Zebrano'], ['Zamówiono', 'Zamówiono'],
+                                  ['Odebrano', 'Odebrano']], :prompt => 'Wybierz status') %>
       </div>
     </div>
 
     <div class="row add-supply-item">
+      <div class="btn right">
+        <span>
+          <%= link_to 'Anuluj', supplies_path %>
+          <i class="material-icons right">cancel</i>
+        </span>
+      </div>
       <button id="submit-button" class="btn waves-effect waves-light right" type="submit" name="action">
         <i id="submit-icon" class="material-icons right">send</i>
         <%= form.submit "Zapisz"%>
@@ -49,26 +51,6 @@
 <% end %>
 </div>
 <script>
-    $.extend($.fn.pickadate.defaults, {
-        monthsFull: [ 'Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień' ],
-        monthsShort: [ 'Sty', 'Lut', 'Mar', 'Kwi', 'Maj', 'Cze', 'Lip', 'Sie', 'Wrz', 'Paź', 'Lis', 'Gru' ],
-        weekdaysFull: [ 'Niedziela', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota' ],
-        weekdaysShort: [ 'Nie', 'Pon', 'Wto', 'Śro', 'Czw', 'Pią', 'Sob' ],
-        weekdaysLetter: [ 'N', 'P', 'W', 'Ś', 'C', 'P', 'S' ],
-        today: 'Dziś',
-        clear: 'Wyczyść',
-        close: 'Zatwierdź',
-        formatSubmit: 'yyyy-mm-dd'
-    });
-    $('.datepicker').pickadate({
-        selectMonths: true, // Creates a dropdown to control month
-        selectYears: 15, // Creates a dropdown of 15 years to control year,
-        firstDay: 1,
-        max: new Date(<%Date.today.to_s%>),
-        formatSubmit: 'yyyy-mm-dd',
-        hiddenName: true,
-        closeOnSelect: true
-    });
     $(document).ready(function() {
         $('select').material_select({
             belowOrigin: true

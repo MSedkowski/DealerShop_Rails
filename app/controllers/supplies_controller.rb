@@ -15,6 +15,7 @@ class SuppliesController < ApplicationController
   # GET /supplies/new
   def new
     @supply = Supply.new
+    @supply.date = Date.today.to_s
   end
 
   # GET /supplies/1/edit
@@ -25,7 +26,7 @@ class SuppliesController < ApplicationController
   # POST /supplies.json
   def create
     @supply = Supply.new(supply_params)
-
+    @supply.date = Date.today.to_s
     respond_to do |format|
       if @supply.save
         format.html { redirect_to @supply, notice: 'Supply was successfully created.' }
