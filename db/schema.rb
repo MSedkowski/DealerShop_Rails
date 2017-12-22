@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171221194830) do
+ActiveRecord::Schema.define(version: 20171221233607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -144,7 +144,6 @@ ActiveRecord::Schema.define(version: 20171221194830) do
   create_table "warehouse", id: :serial, force: :cascade do |t|
     t.string "element", limit: 50, null: false
     t.integer "amount", null: false
-    t.string "status", limit: 30, null: false
     t.index ["element"], name: "index_warehouse_on_element", unique: true
   end
 

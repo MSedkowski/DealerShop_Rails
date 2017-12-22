@@ -13,7 +13,7 @@
     <% end %>
 
     <div class="row add-warehouse-item">
-      <div id="warehouse-item-input" class="input-field col l4 offset-l2">
+      <div id="warehouse-item-input" class="input-field col l5 offset-l3">
         <%= form.text_field :element, id: :warehouse_element, placeholder: "Nazwa elementu"%>
         <label for="warehouse_element" generated="true" class="error error_label"></label>
       </div>
@@ -23,20 +23,11 @@
         <label for="warehouse_amount" generated="true" class="error error_label"></label>
       </div>
 
-
-      <div id="warehouse-item-input" class="input-field col l3">
-        <%= form.select(:status) do %>
-          <% [['Zamówiono', 'Zamówiono'], ['Dostarczono', 'Dostarczono'], ['Wydano', 'Wydano']]
-                 .each do |c| -%>
-            <%= content_tag(:option, c.first, value: c.last) %>
-          <% end %>
-        <% end %>
-      </div>
     </div>
     <div class="row add-warehouse-item">
       <div class="btn right">
         <span>
-          <%= link_to 'Anuluj', supplies_path %>
+          <%= link_to 'Anuluj', warehouses_path %>
           <i class="material-icons right">cancel</i>
         </span>
       </div>

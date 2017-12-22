@@ -27,8 +27,8 @@ class SuppliersController < ApplicationController
 
     respond_to do |format|
       if @supplier.save
-        format.html { redirect_to @supplier, notice: 'Supplier was successfully created.' }
-        format.json { render :show, status: :created, location: @supplier }
+        format.html { redirect_to suppliers_url, notice: 'Supplier was successfully created.' }
+        format.json { render :index, status: :created, location: @supplier }
       else
         format.html { render :new }
         format.json { render json: @supplier.errors, status: :unprocessable_entity }
@@ -41,8 +41,8 @@ class SuppliersController < ApplicationController
   def update
     respond_to do |format|
       if @supplier.update(supplier_params)
-        format.html { redirect_to @supplier, notice: 'Supplier was successfully updated.' }
-        format.json { render :show, status: :ok, location: @supplier }
+        format.html { redirect_to suppliers_url, notice: 'Supplier was successfully updated.' }
+        format.json { render :index, status: :ok, location: @supplier }
       else
         format.html { render :edit }
         format.json { render json: @supplier.errors, status: :unprocessable_entity }

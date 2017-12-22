@@ -28,9 +28,14 @@ class SuppliesController < ApplicationController
     @supply = Supply.new(supply_params)
     @supply.date = Date.today.to_s
     respond_to do |format|
+      if @supply.status == 'Odebrano'
+        element = Warehouse.find(@supply.product_id)
+        element.amount += @supply.amount
+        element.save!
+      end
       if @supply.save
-        format.html { redirect_to @supply, notice: 'Supply was successfully created.' }
-        format.json { render :show, status: :created, location: @supply }
+        format.html { redirect_to supplies_url, notice: 'Supply was successfully created.' }
+        format.json { render :index, status: :created, location: @supply }
       else
         format.html { render :new }
         format.json { render json: @supply.errors, status: :unprocessable_entity }
@@ -42,9 +47,14 @@ class SuppliesController < ApplicationController
   # PATCH/PUT /supplies/1.json
   def update
     respond_to do |format|
+      if @supply.status == 'Odebrano'
+        element = Warehouse.find(@supply.product_id)
+        element.amount += @supply.amount
+        element.save!
+      end
       if @supply.update(supply_params)
-        format.html { redirect_to @supply, notice: 'Supply was successfully updated.' }
-        format.json { render :show, status: :ok, location: @supply }
+        format.html { redirect_to supplies_url, notice: 'Supply was successfully updated.' }
+        format.json { render :index, status: :ok, location: @supply }
       else
         format.html { render :edit }
         format.json { render json: @supply.errors, status: :unprocessable_entity }

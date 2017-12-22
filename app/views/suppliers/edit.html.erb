@@ -1,6 +1,7 @@
-<h1>Editing Supplier</h1>
-
+<div class="main-field">
+  <div class="row header-row">
+    <h3 class="col s6 offset-s3" id="supply-list-header">Edycja dostawcy nr: <%=@supplier.id%></h3>
+  </div>
 <%= render 'form', supplier: @supplier %>
 
-<%= link_to 'Show', @supplier %> |
-<%= link_to 'Back', suppliers_path %>
+</div>
