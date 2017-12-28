@@ -2,7 +2,7 @@ require 'test_helper'
 
 class SuppliesElementsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @supplies_element = supplies_elements(:one)
+    @supplies_warehouse = supplies_elements(:one)
   end
 
   test "should get index" do
@@ -15,32 +15,32 @@ class SuppliesElementsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create supplies_element" do
+  test "should create @supplies_warehouse" do
     assert_difference('SuppliesElement.count') do
-      post supplies_elements_url, params: { supplies_element: { amount: @supplies_element.amount, element_id: @supplies_element.element_id, supply_id: @supplies_element.supply_id } }
+      post supplies_elements_url, params: {supplies_warehouse: {amount: @supplies_warehouse.amount, element_id: @supplies_warehouse.element_id, supply_id: @supplies_warehouse.supply_id } }
     end
 
-    assert_redirected_to supplies_element_url(SuppliesElement.last)
+    assert_redirected_to supplies_element_url(SuppliesWarehouse.last)
   end
 
-  test "should show supplies_element" do
-    get supplies_element_url(@supplies_element)
+  test "should show @supplies_warehouse" do
+    get supplies_element_url(@supplies_warehouse)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_supplies_element_url(@supplies_element)
+    get edit_supplies_element_url(@supplies_warehouse)
     assert_response :success
   end
 
-  test "should update supplies_element" do
-    patch supplies_element_url(@supplies_element), params: { supplies_element: { amount: @supplies_element.amount, element_id: @supplies_element.element_id, supply_id: @supplies_element.supply_id } }
-    assert_redirected_to supplies_element_url(@supplies_element)
+  test "should update @supplies_warehouse" do
+    patch supplies_element_url(@supplies_warehouse), params: {supplies_warehouse: {amount: @supplies_warehouse.amount, element_id: @supplies_warehouse.element_id, supply_id: @supplies_warehouse.supply_id } }
+    assert_redirected_to supplies_element_url(@supplies_warehouse)
   end
 
-  test "should destroy supplies_element" do
-    assert_difference('SuppliesElement.count', -1) do
-      delete supplies_element_url(@supplies_element)
+  test "should destroy @supplies_warehouse" do
+    assert_difference('SuppliesWarehouse.count', -1) do
+      delete supplies_element_url(@supplies_warehouse)
     end
 
     assert_redirected_to supplies_elements_url

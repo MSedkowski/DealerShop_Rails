@@ -1,59 +1,93 @@
 <div class="row add-supply-item">
-<%= form_for @supply do |form| %>
-  <% if supply.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(supply.errors.count, "error") %> prohibited this supply from being saved:</h2>
+  <%= form_for @supply do |supply_form| %>
+    <% if supply.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(supply.errors.count, "error") %> prohibited this supply from being saved:</h2>
 
-      <ul>
-      <% supply.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+        <ul>
+          <% supply.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
     <div class="row add-supply-item">
-      <div id="supply-item-input" class="input-field col l5">
-        <% supplier_array = Supplier.all.map { |supplier| [supplier.data + " | " + supplier.products, supplier.id] } %>
-        <%= form.select(:supplier_id, options_for_select(supplier_array), :prompt => 'Wybierz dostawcę')%>
+      <div id="supply-item-input" class="input-field col l5 offset-l2">
+        <%= supply_form.collection_select :supplier_id, Supplier.all,
+                                          :id, :combined_value,
+                                          :prompt => 'Wybierz dostawcę'%>
         <label for="supply_supplier_id" generated="true" class="error error_label"></label>
-      </div>
-
-      <div id="supply-item-input" class="input-field col l3">
-        <% product_array = Warehouse.all.map { |warehouse| [warehouse.element, warehouse.id] } %>
-        <%= form.select(:product_id, options_for_select(product_array), :prompt => 'Wybierz produkt')%>
-        <label for="supply_supplier_id" generated="true" class="error error_label"></label>
-      </div>
-
-      <div id="supply-item-input" class="input-field col l1">
-        <%= form.text_field :amount, id: :supply_amount, placeholder: 'Podaj ilość' %>
-        <label for="supply_date" generated="true" class="error error_label"></label>
       </div>
 
       <div id="warehouse-item-input" class="input-field col l3">
-        <%= form.select(:status, [['Zebrano', 'Zebrano'], ['Zamówiono', 'Zamówiono'],
-                                  ['Odebrano', 'Odebrano']], :prompt => 'Wybierz status') %>
+        <%= supply_form.select(:status, [['Zebrano', 'Zebrano'], ['Zamówiono', 'Zamówiono'],
+                                         ['Odebrano', 'Odebrano']], :prompt => 'Wybierz status') %>
       </div>
     </div>
+    <div id="product-list">
+      <div class="row add-supply-item">
+        <%= supply_form.fields_for :supplies_warehouses do |amount_field| %>
+          <div class="products">
+          <div id="warehouse-product" class="input-field col l3 offset-l4">
+            <%= amount_field.collection_select :warehouse_id, Warehouse.all, :id, :element, id: 'warehouseProduct', :prompt => 'Wybierz produkt'%>
+            <label for="supply_supplier_id" generated="true" class="error error_label"></label>
+          </div>
+
+
+          <div id="warehouse-amount" class="input-field col l1">
+            <%= amount_field.text_field :amount, placeholder: 'Podaj ilość' %>
+            <label for="supply_date" generated="true" class="error error_label"></label>
+          </div>
+          </div>
+      </div>
+    </div>
+        <% end %>
+    </div>
+    <a href="#" id="add-product"><i class="material-icons">add</i></a>
 
     <div class="row add-supply-item">
       <div class="btn right">
-        <span>
-          <%= link_to 'Anuluj', supplies_path %>
-          <i class="material-icons right">cancel</i>
-        </span>
+          <span>
+            <%= link_to 'Anuluj', supplies_path %>
+            <i class="material-icons right">cancel</i>
+          </span>
       </div>
       <button id="submit-button" class="btn waves-effect waves-light right" type="submit" name="action">
         <i id="submit-icon" class="material-icons right">send</i>
-        <%= form.submit "Zapisz"%>
+        <%= supply_form.submit 'Zapisz'%>
+
       </button>
     </div>
-<% end %>
-</div>
-<script>
-    $(document).ready(function() {
-        $('select').material_select({
-            belowOrigin: true
-        });
-    });
-</script>
+  <% end %>
+  </div>
+  <script>
+      $(document).ready(function() {
+          $('select').material_select({
+              belowOrigin: true
+          });
+          $('#add-product').on('click', function() {
+
+              var date = new Date();
+              var mSec = date.getTime();
+              idAttributProduct =
+                  "supply_supplies_warehouses_attributes_0_warehouse_id".replace("0", mSec);
+              nameAttributProduct =
+                  "supply[supplies_warehouses_attributes][0][warehouse_id]".replace("0", mSec);
+
+              idAttributAmount =
+                  "supply_supplies_warehouses_attributes_0_amount".replace("0", mSec);
+              nameAttributAmount =
+                  "supply[supplies_warehouses_attributes][0][amount]".replace("0", mSec);
+              $(".products").clone(true).appendTo("#product-list");
+              document.getElementById('supply_supplies_warehouses_attributes_0_warehouse_id').setAttribute('id', idAttributProduct);
+              document.getElementById(idAttributProduct).setAttribute('name', nameAttributProduct);
+              document.getElementById('supply_supplies_warehouses_attributes_0_amount').setAttribute('id', idAttributAmount)
+              document.getElementById(idAttributAmount).setAttribute('name', nameAttributAmount);
+              $('select').material_select({
+                  belowOrigin: true
+              });
+              return false;
+          });
+      });
+  </script>

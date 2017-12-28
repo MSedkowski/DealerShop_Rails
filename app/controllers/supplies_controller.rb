@@ -15,7 +15,7 @@ class SuppliesController < ApplicationController
   # GET /supplies/new
   def new
     @supply = Supply.new
-    @supply.date = Date.today.to_s
+    @supply.supplies_warehouses.build
   end
 
   # GET /supplies/1/edit
@@ -28,11 +28,11 @@ class SuppliesController < ApplicationController
     @supply = Supply.new(supply_params)
     @supply.date = Date.today.to_s
     respond_to do |format|
-      if @supply.status == 'Odebrano'
-        element = Warehouse.find(@supply.product_id)
-        element.amount += @supply.amount
-        element.save!
-      end
+      # if @supply.status == 'Odebrano'
+      #   element = Warehouse.lock(true).find(@warehouse)
+      #   element.amount += @supply.amount
+      #   element.save!
+      # end
       if @supply.save
         format.html { redirect_to supplies_url, notice: 'Supply was successfully created.' }
         format.json { render :index, status: :created, location: @supply }
@@ -47,12 +47,13 @@ class SuppliesController < ApplicationController
   # PATCH/PUT /supplies/1.json
   def update
     respond_to do |format|
-      if @supply.status == 'Odebrano'
-        element = Warehouse.find(@supply.product_id)
-        element.amount += @supply.amount
-        element.save!
-      end
-      if @supply.update(supply_params)
+      if @supply.status == 'Odebrano' && @supply.update(supply_params)
+        # element = Warehouse.lock(true).find(@supply.product_id)
+        # element.amount += @supply.amount
+        # element.save!
+        format.html { redirect_to supplies_url, notice: 'Supply was successfully updated.' }
+        format.json { render :index, status: :ok, location: @supply }
+      elsif @supply.status != 'Odebrano' && @supply.update(supply_params)
         format.html { redirect_to supplies_url, notice: 'Supply was successfully updated.' }
         format.json { render :index, status: :ok, location: @supply }
       else
@@ -80,6 +81,6 @@ class SuppliesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def supply_params
-      params.require(:supply).permit(:date, :supplier_id, :product_id, :amount, :status)
+      params.require(:supply).permit(:id, :supplier_id,:status, supplies_warehouses_attributes: [:warehouse_id, :amount])
     end
 end

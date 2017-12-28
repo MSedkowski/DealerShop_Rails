@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171221233607) do
+ActiveRecord::Schema.define(version: 20171227135357) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 20171221233607) do
     t.integer "client_id", null: false
   end
 
-  create_table "service_center", id: :integer, default: -> { "nextval('servic_center_id_seq'::regclass)" }, force: :cascade do |t|
+  create_table "service_center", id: :integer, force: :cascade do |t|
     t.string "brand", limit: 15, null: false
     t.string "model", limit: 20, null: false
     t.string "license_plate", limit: 15, null: false
@@ -116,18 +116,18 @@ ActiveRecord::Schema.define(version: 20171221233607) do
     t.date "date", null: false
     t.integer "supplier_id", null: false
     t.string "status", limit: 30, null: false
-    t.integer "product_id"
+  end
+
+  create_table "supplies_warehouses", force: :cascade do |t|
+    t.integer "supply_id"
+    t.integer "warehouse_id"
     t.integer "amount"
+    t.index ["supply_id"], name: "index_supplies_warehouses_on_supply_id"
+    t.index ["warehouse_id"], name: "index_supplies_warehouses_on_warehouse_id"
   end
 
-  create_table "supplies_elements", id: :integer, default: -> { "nextval('supplies_element_id_seq'::regclass)" }, force: :cascade do |t|
-    t.integer "supply_id", null: false
-    t.integer "element_id", null: false
-    t.integer "amount", null: false
-  end
-
-  create_table "vacation_requests", id: :integer, default: -> { "nextval('vacation_request_id_seq'::regclass)" }, force: :cascade do |t|
-    t.integer "emplyee_id", null: false
+  create_table "vacation_requests", id: :integer, force: :cascade do |t|
+    t.integer "employee_id", null: false
     t.date "start_date", null: false
     t.date "end_date", null: false
     t.integer "how_many_days", null: false
@@ -158,8 +158,6 @@ ActiveRecord::Schema.define(version: 20171221233607) do
   add_foreign_key "service_faults", "faults", name: "fault_id"
   add_foreign_key "service_faults", "service_center", column: "service_id", name: "service_id"
   add_foreign_key "supplies", "suppliers", name: "supplier_id"
-  add_foreign_key "supplies_elements", "supplies", name: "supply_id"
-  add_foreign_key "supplies_elements", "warehouse", column: "element_id", name: "element_id"
-  add_foreign_key "vacation_requests", "employees", column: "emplyee_id", name: "employee_id"
+  add_foreign_key "vacation_requests", "employees", column: "employee_id", name: "employee_id"
   add_foreign_key "vacations", "employees", name: "employee_id"
 end

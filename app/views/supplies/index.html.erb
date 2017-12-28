@@ -19,13 +19,13 @@
   <tbody>
     <% @supplies.each do |supply| %>
     <% suplier = Supplier.find(supply.supplier_id)%>
-    <% element = Warehouse.find(supply.product_id)%>
+    <% #element = Warehouse.find(supply.product_id)%>
       <tr>
         <td><%= supply.id %></td>
         <td><%= supply.date %></td>
         <td><%= suplier.data %></td>
-        <td><%= element.element %></td>
-        <td><%= supply.amount %></td>
+        <td><%#= element.element %></td>
+        <td><%#= supply.amount %></td>
         <td><%= supply.status %></td>
         <td><% if (supply.status != 'Odebrano')%> <%= link_to 'Edytuj', edit_supply_path(supply) %> <%end%></td>
         <td><% if (supply.status != 'Odebrano')%>
