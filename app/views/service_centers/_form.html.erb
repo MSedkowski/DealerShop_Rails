@@ -14,41 +14,50 @@
 
     <div class="row add-supply-item">
       <div id="supply-item-input" class="input-field col l4">
+        <%= form.label :brand, "Podaj markę auta" %>
     <%= form.text_field :brand, id: :service_center_brand %>
+        <label for="service_center_brand" generated="true" class="error error_label"></label>
   </div>
 
       <div id="supply-item-input" class="input-field col l4">
+        <%= form.label :model, "Podaj model auta" %>
     <%= form.text_field :model, id: :service_center_model %>
+        <label for="service_center_model" generated="true" class="error error_label"></label>
   </div>
 
       <div id="supply-item-input" class="input-field col l4">
+        <%= form.label :license_plate, "Podaj numer rejestracyjny" %>
     <%= form.text_field :license_plate, id: :service_center_license_plate %>
+        <label for="service_center_license_plate" generated="true" class="error error_label"></label>
   </div>
     </div>
     <div class="row add-supply-item">
-      <div id="supply-item-input" class="input-field col l4">
-    <%= form.text_field :status, id: :service_center_status %>
+      <div id="supply-item-input" class="input-field col l3 offset-l1">
+        <%= form.select(:status, [['Przyjęto', 'Przyjęto'], ['W realizacji', 'W realizacji'],
+                                         ['Zakończono', 'Zakończono']], include_blank: "Wybierz status") %>
+        <label for="service_center_status" generated="true" class="error error_label"></label>
   </div>
 
-      <div id="supply-item-input" class="input-field col l4">
-    <%= form.text_field :client_id, id: :service_center_client_id %>
+      <div id="supply-item-input" class="input-field col l3">
+        <%= form.collection_select :client_id, Client.all,
+                                          :id, :combined_value,
+                                          include_blank: "Wybierz klienta",
+                                          id: :service_center_client%>
+        <label for="service_center_client_id" generated="true" class="error error_label"></label>
   </div>
 
-      <div id="supply-item-input" class="input-field col l4">
-    <%= form.number_field :mechanic, id: :service_center_mechanic %>
-  </div>
-    </div>
-    <div class="row add-supply-item">
-      <div id="supply-item-input" class="input-field col l4">
-    <%= form.date_select :beginning_date, id: :service_center_beginning_date %>
-  </div>
-
-      <div id="supply-item-input" class="input-field col l4">
-    <%= form.date_select :end_date, id: :service_center_end_date %>
+      <div id="supply-item-input" class="input-field col l2">
+        <%= form.collection_select :employee_id, Employee.all.where("position = 'mechanik'"),
+                                   :id, :combined_name,
+                                   include_blank: "Przypisz pracownika",
+                                   id: :service_center_employee%>
+        <label for="service_center_employee_id" generated="true" class="error error_label"></label>
   </div>
 
-      <div id="supply-item-input" class="input-field col l4">
+      <div id="supply-item-input" class="input-field col l1">
+        <%= form.label :cost, "Podaj koszt" %>
     <%= form.text_field :cost, id: :service_center_cost %>
+        <label for="service_center_cost" generated="true" class="error error_label"></label>
   </div>
     </div>
     <div class="row add-supply-item">
@@ -66,3 +75,12 @@
     </div>
 <% end %>
 </div>
+<script>
+    $(document).ready(function() {
+        <%= render "validate.js" %>
+        $('select').material_select({
+            belowOrigin: true
+        });
+        $(".initialized").css({display: "none", height: 0, padding: 0, width: 0});
+    });
+</script>

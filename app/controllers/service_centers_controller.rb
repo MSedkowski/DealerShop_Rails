@@ -25,11 +25,14 @@ class ServiceCentersController < ApplicationController
   # POST /service_centers.json
   def create
     @service_center = ServiceCenter.new(service_center_params)
-
+    @service_center.beginning_date = Date.today.to_s
+    if @service_center.status == 'Zakończono'
+      @service_center.end_date = Date.today.to_s
+    end
     respond_to do |format|
       if @service_center.save
-        format.html { redirect_to @service_center, notice: 'Service center was successfully created.' }
-        format.json { render :show, status: :created, location: @service_center }
+        format.html { redirect_to service_centers_url, notice: 'Service center was successfully created.' }
+        format.json { render :index, status: :created, location: @service_center }
       else
         format.html { render :new }
         format.json { render json: @service_center.errors, status: :unprocessable_entity }
@@ -40,10 +43,13 @@ class ServiceCentersController < ApplicationController
   # PATCH/PUT /service_centers/1
   # PATCH/PUT /service_centers/1.json
   def update
+    if @service_center.status == 'Zakończono'
+      @service_center.end_date = Date.today.to_s
+    end
     respond_to do |format|
       if @service_center.update(service_center_params)
-        format.html { redirect_to @service_center, notice: 'Service center was successfully updated.' }
-        format.json { render :show, status: :ok, location: @service_center }
+        format.html { redirect_to service_centers_url, notice: 'Service center was successfully updated.' }
+        format.json { render :index, status: :ok, location: @service_center }
       else
         format.html { render :edit }
         format.json { render json: @service_center.errors, status: :unprocessable_entity }
@@ -69,6 +75,6 @@ class ServiceCentersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def service_center_params
-      params.require(:service_center).permit(:brand, :model, :license_plate, :status, :client_id, :mechanic, :beginning_date, :end_date, :cost)
+      params.require(:service_center).permit(:brand, :model, :license_plate, :status, :client_id, :employee_id, :beginning_date, :end_date, :cost)
     end
 end
