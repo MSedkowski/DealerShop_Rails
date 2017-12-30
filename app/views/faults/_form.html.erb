@@ -13,11 +13,15 @@
     <% end %>
     <div class="row add-supply-item">
       <div id="supply-item-input" class="input-field col l5 offset-l2">
+        <%= form.label :name, "Podaj nazwę usługi" %>
         <%= form.text_field :name, id: :fault_name %>
+        <label for="fault_name" generated="true" class="error error_label"></label>
       </div>
 
       <div id="supply-item-input" class="input-field col l3">
-        <%= form.text_field :price, id: :fault_price %>
+        <%= form.label :price, 'Podaj wartość usługi'%>
+        <%= form.text_field :price, id: :fault_price%>
+        <label for="fault_price" generated="true" class="error error_label"></label>
       </div>
     </div>
       <div class="row add-supply-item">
@@ -35,3 +39,6 @@
       </div>
   <% end %>
   </div>
+<script>
+    <%= render "validate.js" %>
+</script>
