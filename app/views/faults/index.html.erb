@@ -1,12 +1,13 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Faults</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Price</th>
+<div class="main-field">
+  <div class="row header-row">
+    <h3 class="col s6 offset-s3" id="supply-list-header">Usługi</h3>
+  </div>
+  <div class="row">
+    <table class="striped col l10 offset-l1">
+      <thead>
+      <tr>
+      <th>Nazwa</th>
+      <th>Cena</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,14 +17,12 @@
       <tr>
         <td><%= fault.name %></td>
         <td><%= fault.price %></td>
-        <td><%= link_to 'Show', fault %></td>
-        <td><%= link_to 'Edit', edit_fault_path(fault) %></td>
-        <td><%= link_to 'Destroy', fault, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Pokaż', fault %></td>
+        <td><%= link_to 'Edytuj', edit_fault_path(fault) %></td>
+        <td><%= link_to 'Usuń', fault, method: :delete, data: { confirm: 'Czy jesteś pewien?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Fault', new_fault_path %>
+  </div>
+</div>

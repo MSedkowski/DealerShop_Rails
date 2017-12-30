@@ -1,6 +1,6 @@
-<h1>Editing Rental Car</h1>
-
+<div class="main-field">
+  <div class="row header-row">
+    <h3 class="col s6 offset-s3" id="supply-list-header">Edycja auta nr: <%=@rental_car.id%></h3>
+  </div>
 <%= render 'form', rental_car: @rental_car %>
-
-<%= link_to 'Show', @rental_car %> |
-<%= link_to 'Back', rental_cars_path %>
+</div>

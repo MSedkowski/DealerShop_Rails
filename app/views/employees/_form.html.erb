@@ -1,67 +1,72 @@
-<%= form_with(model: employee, local: true) do |form| %>
-  <% if employee.errors.any? %>
+<div class="row add-supply-item">
+<%= form_for @employee do |form| %>
+  <% if @employee.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+      <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
 
       <ul>
-      <% employee.errors.full_messages.each do |message| %>
+      <% @employee.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
+    <div class="row add-supply-item">
+      <div id="supply-item-input" class="input-field col l3 offset-l1">
     <%= form.text_field :name, id: :employee_name %>
   </div>
 
-  <div class="field">
-    <%= form.label :surname %>
+      <div id="supply-item-input" class="input-field col l3">
     <%= form.text_field :surname, id: :employee_surname %>
   </div>
 
-  <div class="field">
-    <%= form.label :email %>
+      <div id="supply-item-input" class="input-field col l2">
     <%= form.text_field :email, id: :employee_email %>
   </div>
 
-  <div class="field">
-    <%= form.label :phone_number %>
+      <div id="supply-item-input" class="input-field col l2">
     <%= form.number_field :phone_number, id: :employee_phone_number %>
   </div>
-
-  <div class="field">
-    <%= form.label :password %>
+    </div>
+    <div class="row add-supply-item">
+      <div id="supply-item-input" class="input-field col l3 offset-l2">
     <%= form.text_field :password, id: :employee_password %>
   </div>
 
-  <div class="field">
-    <%= form.label :position %>
+      <div id="supply-item-input" class="input-field col l3">
     <%= form.text_field :position, id: :employee_position %>
   </div>
 
-  <div class="field">
-    <%= form.label :salary %>
+      <div id="supply-item-input" class="input-field col l2">
     <%= form.text_field :salary, id: :employee_salary %>
   </div>
-
-  <div class="field">
-    <%= form.label :days_of_paid_leave %>
+    </div>
+    <div class="row add-supply-item">
+      <div id="supply-item-input" class="input-field col l3 offset-l2">
     <%= form.number_field :days_of_paid_leave, id: :employee_days_of_paid_leave %>
   </div>
 
-  <div class="field">
-    <%= form.label :date_of_employment %>
+      <div id="supply-item-input" class="input-field col l2">
     <%= form.date_select :date_of_employment, id: :employee_date_of_employment %>
   </div>
 
-  <div class="field">
-    <%= form.label :bonuses %>
+      <div id="supply-item-input" class="input-field col l3">
     <%= form.text_field :bonuses, id: :employee_bonuses %>
   </div>
+    </div>
+  <div class="row add-supply-item">
+    <div class="btn right">
+          <span>
+            <%= link_to 'Anuluj', employees_path %>
+            <i class="material-icons right">cancel</i>
+          </span>
+    </div>
+    <button id="submit-button" class="btn waves-effect waves-light right" type="submit" name="action">
+      <i id="submit-icon" class="material-icons right">send</i>
+      <%= form.submit 'Zapisz'%>
 
-  <div class="actions">
-    <%= form.submit %>
+    </button>
   </div>
 <% end %>
+</div>

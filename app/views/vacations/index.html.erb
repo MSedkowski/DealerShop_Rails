@@ -1,14 +1,15 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Vacations</h1>
-
-<table>
-  <thead>
+<div class="main-field">
+  <div class="row header-row">
+    <h3 class="col s6 offset-s3" id="supply-list-header">Urlopy</h3>
+  </div>
+  <div class="row">
+    <table class="striped col l10 offset-l1">
+      <thead>
     <tr>
-      <th>Employee</th>
-      <th>Beginning date</th>
-      <th>End date</th>
-      <th>How many days</th>
+      <th>Pracownik</th>
+      <th>Data rozpoczęcia</th>
+      <th>Data zakończenia</th>
+      <th>Ilość dni</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,14 +21,12 @@
         <td><%= vacation.beginning_date %></td>
         <td><%= vacation.end_date %></td>
         <td><%= vacation.how_many_days %></td>
-        <td><%= link_to 'Show', vacation %></td>
-        <td><%= link_to 'Edit', edit_vacation_path(vacation) %></td>
-        <td><%= link_to 'Destroy', vacation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Pokaż', vacation %></td>
+        <td><%= link_to 'Edytuj', edit_vacation_path(vacation) %></td>
+        <td><%= link_to 'Usuń', vacation, method: :delete, data: { confirm: 'Czy jesteś pewien?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Vacation', new_vacation_path %>
+  </div>
+</div>

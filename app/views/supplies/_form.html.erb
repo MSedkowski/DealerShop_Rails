@@ -41,10 +41,11 @@
           </div>
           </div>
       </div>
-    </div>
+          <a class="btn-floating btn-medium waves-effect waves-light red" id="add-product"><i class="material-icons">add</i></a>
+
+          </div>
         <% end %>
     </div>
-    <a href="#" id="add-product"><i class="material-icons">add</i></a>
 
     <div class="row add-supply-item">
       <div class="btn right">
@@ -79,11 +80,11 @@
                   "supply_supplies_warehouses_attributes_0_amount".replace("0", mSec);
               nameAttributAmount =
                   "supply[supplies_warehouses_attributes][0][amount]".replace("0", mSec);
-              $(".products").clone(true).appendTo("#product-list");
+              $(".products").clone(true).attr('class', 'product-clone').appendTo("#product-list");
+              document.getElementById('supply_supplies_warehouses_attributes_0_warehouse_id').setAttribute('name', nameAttributProduct);
               document.getElementById('supply_supplies_warehouses_attributes_0_warehouse_id').setAttribute('id', idAttributProduct);
-              document.getElementById(idAttributProduct).setAttribute('name', nameAttributProduct);
+              document.getElementById('supply_supplies_warehouses_attributes_0_amount').setAttribute('name', nameAttributAmount);
               document.getElementById('supply_supplies_warehouses_attributes_0_amount').setAttribute('id', idAttributAmount)
-              document.getElementById(idAttributAmount).setAttribute('name', nameAttributAmount);
               $('select').material_select({
                   belowOrigin: true
               });

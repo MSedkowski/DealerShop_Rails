@@ -1,32 +1,42 @@
-<%= form_with(model: rental_car, local: true) do |form| %>
-  <% if rental_car.errors.any? %>
+<div class="row add-supply-item">
+<%= form_for @rental_car do |form| %>
+  <% if @rental_car.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(rental_car.errors.count, "error") %> prohibited this rental_car from being saved:</h2>
+      <h2><%= pluralize(@rental_car.errors.count, "error") %> prohibited this rental_car from being saved:</h2>
 
       <ul>
-      <% rental_car.errors.full_messages.each do |message| %>
+      <% @rental_car.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :brand %>
+    <div class="row add-supply-item">
+      <div id="supply-item-input" class="input-field col l3 offset-l1">
     <%= form.text_field :brand, id: :rental_car_brand %>
   </div>
 
-  <div class="field">
-    <%= form.label :model %>
+      <div id="supply-item-input" class="input-field col l3">
     <%= form.text_field :model, id: :rental_car_model %>
   </div>
 
-  <div class="field">
-    <%= form.label :additional_information %>
+      <div id="supply-item-input" class="input-field col l4">
     <%= form.text_field :additional_information, id: :rental_car_additional_information %>
   </div>
+    </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <div class="row add-supply-item">
+      <div class="btn right">
+          <span>
+            <%= link_to 'Anuluj', rental_cars_path %>
+            <i class="material-icons right">cancel</i>
+          </span>
+      </div>
+      <button id="submit-button" class="btn waves-effect waves-light right" type="submit" name="action">
+        <i id="submit-icon" class="material-icons right">send</i>
+        <%= form.submit 'Zapisz'%>
+
+      </button>
+    </div>
 <% end %>
+</div>

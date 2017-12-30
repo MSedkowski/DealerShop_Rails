@@ -1,37 +1,46 @@
-<%= form_with(model: renting, local: true) do |form| %>
-  <% if renting.errors.any? %>
+<div class="row add-supply-item">
+<%= form_for @renting do |form| %>
+  <% if @renting.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(renting.errors.count, "error") %> prohibited this renting from being saved:</h2>
+      <h2><%= pluralize(@renting.errors.count, "error") %> prohibited this renting from being saved:</h2>
 
       <ul>
-      <% renting.errors.full_messages.each do |message| %>
+      <% @renting.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :car_id %>
+    <div class="row add-supply-item">
+      <div id="supply-item-input" class="input-field col l4 offset-l1">
     <%= form.text_field :car_id, id: :renting_car_id %>
   </div>
 
-  <div class="field">
-    <%= form.label :start_date %>
+      <div id="supply-item-input" class="input-field col l2">
     <%= form.date_select :start_date, id: :renting_start_date %>
   </div>
 
-  <div class="field">
-    <%= form.label :end_date %>
+      <div id="supply-item-input" class="input-field col l2">
     <%= form.date_select :end_date, id: :renting_end_date %>
   </div>
 
-  <div class="field">
-    <%= form.label :client_id %>
+      <div id="supply-item-input" class="input-field col l2">
     <%= form.text_field :client_id, id: :renting_client_id %>
   </div>
+    </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <div class="row add-supply-item">
+      <div class="btn right">
+          <span>
+            <%= link_to 'Anuluj', rentings_path %>
+            <i class="material-icons right">cancel</i>
+          </span>
+      </div>
+      <button id="submit-button" class="btn waves-effect waves-light right" type="submit" name="action">
+        <i id="submit-icon" class="material-icons right">send</i>
+        <%= form.submit 'Zapisz'%>
+
+      </button>
+    </div>
 <% end %>
+</div>
