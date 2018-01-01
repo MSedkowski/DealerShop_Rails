@@ -15,6 +15,7 @@ class ServiceCentersController < ApplicationController
   # GET /service_centers/new
   def new
     @service_center = ServiceCenter.new
+    @service_center.service_faults.build
   end
 
   # GET /service_centers/1/edit
@@ -75,6 +76,7 @@ class ServiceCentersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def service_center_params
-      params.require(:service_center).permit(:brand, :model, :license_plate, :status, :client_id, :employee_id, :beginning_date, :end_date, :cost)
+      params.require(:service_center).permit(:id, :brand, :model, :license_plate, :status, :client_id, :employee_id, :beginning_date, :end_date, :cost,
+                                             service_faults_attributes: [:fault_id])
     end
 end

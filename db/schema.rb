@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171230204700) do
+ActiveRecord::Schema.define(version: 20171231101424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 20171230204700) do
   end
 
   create_table "service_faults", id: :serial, force: :cascade do |t|
-    t.integer "service_id", null: false
+    t.integer "service_center_id", null: false
     t.integer "fault_id", null: false
   end
 
@@ -156,7 +156,7 @@ ActiveRecord::Schema.define(version: 20171230204700) do
   add_foreign_key "service_center", "clients", name: "client_id"
   add_foreign_key "service_center", "employees", name: "employee_id"
   add_foreign_key "service_faults", "faults", name: "fault_id"
-  add_foreign_key "service_faults", "service_center", column: "service_id", name: "service_id"
+  add_foreign_key "service_faults", "service_center", name: "service_id"
   add_foreign_key "supplies", "suppliers", name: "supplier_id"
   add_foreign_key "vacation_requests", "employees", name: "employee_id"
   add_foreign_key "vacations", "employees", name: "employee_id"
