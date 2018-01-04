@@ -32,7 +32,7 @@ class ServiceCentersController < ApplicationController
     end
     respond_to do |format|
       if @service_center.save
-        format.html { redirect_to service_centers_url, notice: 'Service center was successfully created.' }
+        format.html { redirect_to service_centers_url, notice: 'Zlecenie naprawy zostało utworzone.' }
         format.json { render :index, status: :created, location: @service_center }
       else
         format.html { render :new }
@@ -51,8 +51,13 @@ class ServiceCentersController < ApplicationController
     end
     respond_to do |format|
       if @service_center.update(service_center_params)
-        format.html { redirect_to service_centers_url, notice: 'Service center was successfully updated.' }
-        format.json { render :index, status: :ok, location: @service_center }
+        if service_center_params[:status] == 'Zakończono'
+          format.html { redirect_to service_centers_url, notice: 'Zlecenie naprawy zostało zakończone.' }
+          format.json { render :index, status: :ok, location: @service_center }
+        else
+          format.html { redirect_to service_centers_url, notice: 'Zlecenie naprawy zostało zaktualizowane.' }
+          format.json { render :index, status: :ok, location: @service_center }
+        end
       else
         format.html { render :edit }
         format.json { render json: @service_center.errors, status: :unprocessable_entity }
