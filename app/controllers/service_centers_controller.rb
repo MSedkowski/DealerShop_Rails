@@ -44,8 +44,10 @@ class ServiceCentersController < ApplicationController
   # PATCH/PUT /service_centers/1
   # PATCH/PUT /service_centers/1.json
   def update
-    if @service_center.status == 'Zakończono'
+    if service_center_params[:status] == 'Zakończono'
       @service_center.end_date = Date.today.to_s
+    else
+      @service_center.end_date = nil
     end
     respond_to do |format|
       if @service_center.update(service_center_params)
@@ -76,7 +78,7 @@ class ServiceCentersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def service_center_params
-      params.require(:service_center).permit(:id, :brand, :model, :license_plate, :status, :client_id, :employee_id, :beginning_date, :end_date, :cost,
-                                             service_faults_attributes: [:fault_id])
+      params.require(:service_center).permit(:id, :brand, :model, :license_plate, :status, :client_id, :employee_id, :cost,
+                                             service_faults_attributes: [:id, :fault_id, :_destroy])
     end
 end

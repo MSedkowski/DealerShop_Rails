@@ -3,7 +3,7 @@
     <h3 class="col s6 offset-s3" id="supply-list-header">Centrum Serwisowe</h3>
   </div>
   <div class="row">
-    <table class="striped col l10 offset-l1">
+    <table class="striped col l12">
       <thead>
       <tr>
         <th>L.p.</th>
@@ -21,7 +21,7 @@
       </thead>
 
       <tbody>
-      <% @service_centers.each do |service_center| %>
+      <% @service_centers.sort.each do |service_center| %>
         <tr>
           <td><%= service_center.id %></td>
           <td><%= service_center.brand %></td>
@@ -39,6 +39,11 @@
             <%end%></td>
           <td><% if service_center.status != 'Zakończono'%>
               <%= link_to 'Usuń', service_center, method: :delete, data: { confirm: 'Czy jesteś pewien?' } %>
+            <%end %></td>
+          <td><% if service_center.status != 'Zakończono'%>
+              <%= link_to 'Zakończ', html: {onclick: service_center.update(status: 'Zakończono',
+                                                                           end_date: Date.today.to_s)},
+                          data: { confirm: 'Czy na pewno chcesz zakończyć naprawę?' } %>
             <%end %></td>
         </tr>
       <% end %>

@@ -6,27 +6,29 @@
     <table class="striped col l10 offset-l1">
       <thead>
       <tr>
-      <th>Samochód</th>
-      <th>Początek wypożyczenia</th>
-      <th>Koniec wypożyczenia</th>
-      <th>Klient</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @rentings.each do |renting| %>
-      <tr>
-        <td><%= renting.car %></td>
-        <td><%= renting.start_date %></td>
-        <td><%= renting.end_date %></td>
-        <td><%= renting.client %></td>
-        <td><%= link_to 'Pokaż', renting %></td>
-        <td><%= link_to 'Edytuj', edit_renting_path(renting) %></td>
-        <td><%= link_to 'Usuń', renting, method: :delete, data: { confirm: 'Czy jesteś pewien?' } %></td>
+        <th>Samochód</th>
+        <th>Początek wypożyczenia</th>
+        <th>Koniec wypożyczenia</th>
+        <th>Klient</th>
+        <th>Status</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+      </thead>
+
+      <tbody>
+      <% @rentings.each do |renting| %>
+        <tr>
+          <td><%= renting.car %></td>
+          <td><%= renting.start_date %></td>
+          <td><%= renting.end_date %></td>
+          <td><%= renting.client %></td>
+          <td></td>
+          <td><%= link_to 'Pokaż', renting %></td>
+          <td><%= link_to 'Edytuj', edit_renting_path(renting) %></td>
+          <td><%= link_to 'Usuń', renting, method: :delete, data: { confirm: 'Czy jesteś pewien?' } %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

@@ -28,10 +28,6 @@ $("#new_service_center").validate({
         },
         "service_center[employee_id]":{
             required: true
-        },
-        "service_center[cost]":{
-            required: true,
-            min: 0
         }
     },
     //error messages
@@ -55,10 +51,6 @@ $("#new_service_center").validate({
         },
         "service_center[employee_id]":{
             required: "Należy przypisać pracownika."
-        },
-        "service_center[cost]":{
-            required: "Należy podać koszt naprawy",
-            min: "Minimalny koszt to 0"
         }
     }
 });
