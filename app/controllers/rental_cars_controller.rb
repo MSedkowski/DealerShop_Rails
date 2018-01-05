@@ -28,8 +28,8 @@ class RentalCarsController < ApplicationController
 
     respond_to do |format|
       if @rental_car.save
-        format.html { redirect_to @rental_car, notice: 'Rental car was successfully created.' }
-        format.json { render :show, status: :created, location: @rental_car }
+        format.html { redirect_to rental_cars_path, notice: 'Rental car was successfully created.' }
+        format.json { render :index, status: :created, location: @rental_car }
       else
         format.html { render :new }
         format.json { render json: @rental_car.errors, status: :unprocessable_entity }
@@ -42,8 +42,8 @@ class RentalCarsController < ApplicationController
   def update
     respond_to do |format|
       if @rental_car.update(rental_car_params)
-        format.html { redirect_to @rental_car, notice: 'Rental car was successfully updated.' }
-        format.json { render :show, status: :ok, location: @rental_car }
+        format.html { redirect_to rental_cars_path, notice: 'Rental car was successfully updated.' }
+        format.json { render :index, status: :ok, location: @rental_car }
       else
         format.html { render :edit }
         format.json { render json: @rental_car.errors, status: :unprocessable_entity }

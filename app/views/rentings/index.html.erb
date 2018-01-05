@@ -17,12 +17,17 @@
 
       <tbody>
       <% @rentings.each do |renting| %>
+      <% today = Date.today.to_s %>
         <tr>
-          <td><%= renting.car %></td>
+          <td><%= renting.rental_car.combined_model%></td>
           <td><%= renting.start_date %></td>
           <td><%= renting.end_date %></td>
-          <td><%= renting.client %></td>
-          <td></td>
+          <td><%= renting.client.combined_value %></td>
+          <td><% if(renting.start_date.to_s > today) %>
+              <span class="green-text" style="font-weight: bold">Zarezerwowano</span>
+            <% elsif(renting.start_date.to_s <= today && renting.end_date.to_s >= today) %>
+              <span class="orange-text" style="font-weight: bold">W trakcie realizacji</span>
+            <% else %> <span class="red-text" style="font-weight: bold">Zrealizowano</span> <% end %></td>
           <td><%= link_to 'Pokaż', renting %></td>
           <td><%= link_to 'Edytuj', edit_renting_path(renting) %></td>
           <td><%= link_to 'Usuń', renting, method: :delete, data: { confirm: 'Czy jesteś pewien?' } %></td>

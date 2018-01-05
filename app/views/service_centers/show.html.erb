@@ -48,7 +48,7 @@
           <td><%= service_center.name %></td>
           <td><%= service_center.price %></td>
         </tr>
-      <% id+= 1 %>
+      <% id += 1 %>
         <% end %>
         </tbody>
     </table>
@@ -70,5 +70,19 @@
   <div class="row">
   </div>
 </div>
-<%= link_to 'Edit', edit_service_center_path(@service_center) %> |
-<%= link_to 'Back', service_centers_path %>
+<% if(@service_center.status != 'Zakończono') %>
+  <div class="btn right">
+          <span>
+            <%= link_to 'Edycja', edit_service_center_path(@service_center) %>
+            <i class="material-icons right">edit</i>
+          </span>
+  </div>
+
+  <% end %>
+<div class="btn right">
+          <span>
+            <%= link_to 'Powrót', service_centers_path %>
+            <i class="material-icons right">arrow_back</i>
+          </span>
+</div>
+

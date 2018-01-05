@@ -13,15 +13,21 @@
   <% end %>
     <div class="row add-supply-item">
       <div id="supply-item-input" class="input-field col l3 offset-l1">
+        <%= form.label :brand, "Podaj markę auta" %>
     <%= form.text_field :brand, id: :rental_car_brand %>
+        <label for="rental_car_brand" generated="true" class="error error_label"></label>
   </div>
 
       <div id="supply-item-input" class="input-field col l3">
+        <%= form.label :model, "Podaj model auta" %>
     <%= form.text_field :model, id: :rental_car_model %>
+        <label for="rental_car_model" generated="true" class="error error_label"></label>
   </div>
 
       <div id="supply-item-input" class="input-field col l4">
+        <%= form.label :additional_information, "Informacje dodatkowe" %>
     <%= form.text_field :additional_information, id: :rental_car_additional_information %>
+        <label for="rental_car_additional_information" generated="true" class="error error_label"></label>
   </div>
     </div>
 
@@ -40,3 +46,8 @@
     </div>
 <% end %>
 </div>
+<script>
+    $(document).ready(function() {
+        <%= render "validate.js" %>
+    });
+</script>

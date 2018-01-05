@@ -42,9 +42,13 @@
               <%= link_to 'Usuń', service_center, method: :delete, data: { confirm: 'Czy jesteś pewien?' } %>
             <%end %></td>
           <td><% if service_center.status != 'Zakończono'%>
-              <%= link_to 'Zakończ', service_centers_path, html: {onclick: service_center.update(status: 'Zakończono',
-                                                                           end_date: Date.today.to_s)},
+              <%= link_to 'Zakończ', service_centers_path, id: 'close-repair',
                           data: { confirm: 'Czy na pewno chcesz zakończyć naprawę?'}%>
+              <script>
+                  $('#close-repair').click(function (event) {
+                      <% service_center.update(status: 'Zakończono', end_date: Date.today().to_s)%>
+                  });
+              </script>
             <%end %></td>
         </tr>
       <% end %>
@@ -52,3 +56,4 @@
     </table>
   </div>
 </div>
+

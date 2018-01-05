@@ -28,8 +28,8 @@ class RentingsController < ApplicationController
 
     respond_to do |format|
       if @renting.save
-        format.html { redirect_to @renting, notice: 'Renting was successfully created.' }
-        format.json { render :show, status: :created, location: @renting }
+        format.html { redirect_to rentings_path, notice: 'Renting was successfully created.' }
+        format.json { render :index, status: :created, location: @renting }
       else
         format.html { render :new }
         format.json { render json: @renting.errors, status: :unprocessable_entity }
@@ -42,8 +42,8 @@ class RentingsController < ApplicationController
   def update
     respond_to do |format|
       if @renting.update(renting_params)
-        format.html { redirect_to @renting, notice: 'Renting was successfully updated.' }
-        format.json { render :show, status: :ok, location: @renting }
+        format.html { redirect_to rentings_path, notice: 'Renting was successfully updated.' }
+        format.json { render :index, status: :ok, location: @renting }
       else
         format.html { render :edit }
         format.json { render json: @renting.errors, status: :unprocessable_entity }
@@ -69,6 +69,6 @@ class RentingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def renting_params
-      params.require(:renting).permit(:car_id, :start_date, :end_date, :client_id)
+      params.require(:renting).permit(:rental_car_id, :start_date, :end_date, :client_id)
     end
 end

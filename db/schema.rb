@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 20171231101424) do
   end
 
   create_table "rentings", id: :serial, force: :cascade do |t|
-    t.integer "car_id", null: false
+    t.integer "rental_car_id", null: false
     t.date "start_date", null: false
     t.date "end_date", null: false
     t.integer "client_id", null: false
@@ -152,7 +152,7 @@ ActiveRecord::Schema.define(version: 20171231101424) do
   add_foreign_key "ordered_cars", "cars_to_sell", column: "car_id", name: "car_id"
   add_foreign_key "ordered_cars", "clients", name: "client_id"
   add_foreign_key "rentings", "clients", name: "client_id"
-  add_foreign_key "rentings", "rental_cars", column: "car_id", name: "car_id"
+  add_foreign_key "rentings", "rental_cars", name: "rental_car_id"
   add_foreign_key "service_center", "clients", name: "client_id"
   add_foreign_key "service_center", "employees", name: "employee_id"
   add_foreign_key "service_faults", "faults", name: "fault_id"

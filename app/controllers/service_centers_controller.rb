@@ -27,7 +27,7 @@ class ServiceCentersController < ApplicationController
   def create
     @service_center = ServiceCenter.new(service_center_params)
     @service_center.beginning_date = Date.today.to_s
-    if @service_center.status == 'Zakończono'
+    if @service_center.status.equal?('Zakończono')
       @service_center.end_date = Date.today.to_s
     end
     respond_to do |format|
@@ -44,20 +44,15 @@ class ServiceCentersController < ApplicationController
   # PATCH/PUT /service_centers/1
   # PATCH/PUT /service_centers/1.json
   def update
-    if service_center_params[:status] == 'Zakończono'
+    if service_center_params[:status].equal?('Zakończono')
       @service_center.end_date = Date.today.to_s
     else
       @service_center.end_date = nil
     end
     respond_to do |format|
       if @service_center.update(service_center_params)
-        if service_center_params[:status] == 'Zakończono'
-          format.html { redirect_to service_centers_url, notice: 'Zlecenie naprawy zostało zakończone.' }
-          format.json { render :index, status: :ok, location: @service_center }
-        else
-          format.html { redirect_to service_centers_url, notice: 'Zlecenie naprawy zostało zaktualizowane.' }
-          format.json { render :index, status: :ok, location: @service_center }
-        end
+        format.html { redirect_to service_centers_url, notice: 'Zlecenie naprawy zostało zaktualizowane.' }
+        format.json { render :index, status: :ok, location: @service_center }
       else
         format.html { render :edit }
         format.json { render json: @service_center.errors, status: :unprocessable_entity }
