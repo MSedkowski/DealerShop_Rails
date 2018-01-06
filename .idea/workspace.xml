@@ -5,18 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="241dacdb-07ed-4149-8de6-9c102ae60f19" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/rental_cars_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/rental_cars_controller.rb" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/rentings_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/rentings_controller.rb" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/service_centers_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/service_centers_controller.rb" />
-      <change beforePath="$PROJECT_DIR$/app/models/rental_car.rb" afterPath="$PROJECT_DIR$/app/models/rental_car.rb" />
-      <change beforePath="$PROJECT_DIR$/app/models/renting.rb" afterPath="$PROJECT_DIR$/app/models/renting.rb" />
-      <change beforePath="$PROJECT_DIR$/app/views/rental_cars/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/rental_cars/_form.html.erb" />
-      <change beforePath="$PROJECT_DIR$/app/views/rentings/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/rentings/_form.html.erb" />
+      <change beforePath="$PROJECT_DIR$/app/views/rental_cars/index.html.erb" afterPath="$PROJECT_DIR$/app/views/rental_cars/index.html.erb" />
       <change beforePath="$PROJECT_DIR$/app/views/rentings/index.html.erb" afterPath="$PROJECT_DIR$/app/views/rentings/index.html.erb" />
-      <change beforePath="$PROJECT_DIR$/app/views/service_centers/index.html.erb" afterPath="$PROJECT_DIR$/app/views/service_centers/index.html.erb" />
-      <change beforePath="$PROJECT_DIR$/app/views/service_centers/show.html.erb" afterPath="$PROJECT_DIR$/app/views/service_centers/show.html.erb" />
-      <change beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -36,8 +26,8 @@
       <file leaf-file-name="_form.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/service_centers/_form.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="131" column="82" lean-forward="false" selection-start-line="131" selection-start-column="8" selection-end-line="131" selection-end-column="82" />
+            <state relative-caret-position="437">
+              <caret line="133" column="40" lean-forward="false" selection-start-line="133" selection-start-column="22" selection-end-line="133" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -46,8 +36,8 @@
       <file leaf-file-name="_form.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/rentings/_form.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="469">
-              <caret line="29" column="31" lean-forward="false" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
+            <state relative-caret-position="239">
+              <caret line="57" column="34" lean-forward="false" selection-start-line="57" selection-start-column="4" selection-end-line="57" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -103,14 +93,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.erb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/rentings/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="27" column="78" lean-forward="false" selection-start-line="27" selection-start-column="78" selection-end-line="27" selection-end-column="78" />
+            <state relative-caret-position="595">
+              <caret line="40" column="24" lean-forward="false" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#td#4;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html.erb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/rental_cars/index.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="20" column="59" lean-forward="false" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -120,16 +120,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="450">
               <caret line="25" column="100" lean-forward="false" selection-start-line="21" selection-start-column="12" selection-end-line="25" selection-end-column="100" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="schema.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/schema.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1494">
-              <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -165,7 +155,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/views/rental_cars/index.html.erb" />
         <option value="$PROJECT_DIR$/app/views/cars_to_sells/index.html.erb" />
         <option value="$PROJECT_DIR$/app/views/ordered_cars/index.html.erb" />
         <option value="$PROJECT_DIR$/app/models/cars_to_sell_discounts_controller.rb" />
@@ -216,6 +205,7 @@
         <option value="$PROJECT_DIR$/app/views/rentings/_form.html.erb" />
         <option value="$PROJECT_DIR$/app/views/rentings/_validate.js" />
         <option value="$PROJECT_DIR$/app/views/rentings/index.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/rental_cars/index.html.erb" />
       </list>
     </option>
   </component>
@@ -493,12 +483,12 @@
       <workItem from="1514474589640" duration="12086000" />
       <workItem from="1514496756924" duration="41870000" />
       <workItem from="1514713043161" duration="10442000" />
-      <workItem from="1514884411713" duration="53515000" />
+      <workItem from="1514884411713" duration="57554000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="205811000" />
+    <option name="totallyTimeSpent" value="209850000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1431" y="-4" width="1375" height="904" extended-state="6" />
@@ -537,13 +527,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/cars_to_sells/edit.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="89" lean-forward="false" selection-start-line="2" selection-start-column="89" selection-end-line="2" selection-end-column="89" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/employees/_form.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
@@ -869,34 +852,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/rentings_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="667">
-          <caret line="74" column="0" lean-forward="false" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/rental_car.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="9" column="35" lean-forward="false" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/service_centers/_form.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="131" column="82" lean-forward="false" selection-start-line="131" selection-start-column="8" selection-end-line="131" selection-end-column="82" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/rentings/_form.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="29" column="31" lean-forward="false" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -917,13 +876,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/rentings/_form.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="57" column="34" lean-forward="false" selection-start-line="57" selection-start-column="4" selection-end-line="57" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/service_centers/_form.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="133" column="40" lean-forward="false" selection-start-line="133" selection-start-column="22" selection-end-line="133" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/rentings_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="667">
+          <caret line="74" column="0" lean-forward="false" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/rentings/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="27" column="78" lean-forward="false" selection-start-line="27" selection-start-column="78" selection-end-line="27" selection-end-column="78" />
+        <state relative-caret-position="595">
+          <caret line="40" column="24" lean-forward="false" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
           <folding>
             <element signature="n#style#0;n#span#0;n#td#4;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/rental_cars/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="20" column="59" lean-forward="false" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
+          <folding />
         </state>
       </provider>
     </entry>

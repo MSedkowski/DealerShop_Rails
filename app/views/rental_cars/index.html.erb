@@ -19,7 +19,6 @@
           <td><%= rental_car.brand %></td>
           <td><%= rental_car.model %></td>
           <td><%= rental_car.additional_information %></td>
-          <td><%= link_to 'Pokaż', rental_car %></td>
           <td><%= link_to 'Edytuj', edit_rental_car_path(rental_car) %></td>
           <td><%= link_to 'Usuń', rental_car, method: :delete, data: { confirm: 'Czy jesteś pewien?' } %></td>
         </tr>

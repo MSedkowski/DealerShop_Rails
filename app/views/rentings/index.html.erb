@@ -27,13 +27,21 @@
               <span class="green-text" style="font-weight: bold">Zarezerwowano</span>
             <% elsif(renting.start_date.to_s <= today && renting.end_date.to_s >= today) %>
               <span class="orange-text" style="font-weight: bold">W trakcie realizacji</span>
-            <% else %> <span class="red-text" style="font-weight: bold">Zrealizowano</span> <% end %></td>
-          <td><%= link_to 'Pokaż', renting %></td>
-          <td><%= link_to 'Edytuj', edit_renting_path(renting) %></td>
-          <td><%= link_to 'Usuń', renting, method: :delete, data: { confirm: 'Czy jesteś pewien?' } %></td>
+            <% else %> <span class="red-text accomplished" style="font-weight: bold">Zrealizowano</span> <% end %></td>
+          <td><%= link_to 'Edytuj', edit_renting_path(renting), id: 'edit-link' %></td>
+          <td><%= link_to 'Usuń', renting, method: :delete, id: 'delete-link', data: { confirm: 'Czy jesteś pewien?' } %></td>
         </tr>
       <% end %>
       </tbody>
     </table>
   </div>
 </div>
+<script>
+    $(document).ready(function() {
+        $('.accomplished').each(function() {
+                $(this).closest("tr").find('#edit-link').hide();
+                $(this).closest("tr").find('#delete-link').hide();
+        });
+    });
+
+</script>
