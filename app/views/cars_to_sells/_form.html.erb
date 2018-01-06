@@ -12,24 +12,32 @@
     </div>
   <% end %>
 
-    <div class="row add-supply-item">
-      <div id="supply-item-input" class="input-field col l3 offset-l1">
+    <div class="row add-cars-to-sell">
+      <div id="new-car-input" class="input-field col l3 offset-l1">
+        <%= form.label :brand, "Podaj markę auta" %>
     <%= form.text_field :brand, id: :cars_to_sell_brand %>
+        <label for="cars_to_sell_brand" generated="true" class="error error_label"></label>
   </div>
 
-      <div id="supply-item-input" class="input-field col l3">
+      <div id="new-car-input" class="input-field col l3">
+        <%= form.label :model, "Podaj model auta" %>
     <%= form.text_field :model, id: :cars_to_sell_model %>
+        <label for="cars_to_sell_model" generated="true" class="error error_label"></label>
   </div>
 
-      <div id="supply-item-input" class="input-field col l1">
+      <div id="new-car-input" class="input-field col l1">
+        <%= form.label :price, "Podaj cenę auta" %>
     <%= form.text_field :price, id: :cars_to_sell_price %>
+        <label for="cars_to_sell_price" generated="true" class="error error_label"></label>
   </div>
 
-      <div id="supply-item-input" class="input-field col l3">
+      <div id="new-car-input" class="input-field col l3">
+        <%= form.label :additional_information, "Podaj dodatkowe informację" %>
     <%= form.text_field :additional_information, id: :cars_to_sell_additional_information %>
+        <label for="cars_to_sell_additional_information" generated="true" class="error error_label"></label>
   </div>
     </div>
-  <div class="row add-supply-item">
+  <div class="row add-cars-to-sell">
     <div class="btn right">
           <span>
             <%= link_to 'Anuluj', cars_to_sells_path %>
@@ -44,3 +52,11 @@
   </div>
 <% end %>
 </div>
+<script>
+    $(document).ready(function() {
+        <%= render "validate.js" %>
+    });
+    $(document).on('page:load', function() {
+        <%= render "validate.js" %>
+    });
+</script>

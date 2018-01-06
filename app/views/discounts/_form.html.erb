@@ -12,22 +12,34 @@
     </div>
   <% end %>
 
-    <div class="row add-supply-item">
-      <div id="supply-item-input" class="input-field col l4 offset-l1">
+    <div class="row add-discount">
+      <div id="new-discount-input" class="input-field col l2 offset-l1">
+        <%= form.label :discount_name, "Podaj nazwę zniżki" %>
     <%= form.text_field :discount_name, id: :discount_discount_name %>
+        <label for="discount_discount_name" generated="true" class="error error_label"></label>
   </div>
 
-      <div id="supply-item-input" class="input-field col l2">
-    <%= form.date_select :start_date, id: :discount_start_date %>
+      <div id="new-discount-input" class="input-field col l2">
+
+        <%= form.text_field :start_date, id: :discount_start_date, class: "datepicker", placeholder: 'Podaj datę rozpoczęcia' %>        <label for="discount_start_date" generated="true" class="error error_label"></label>
   </div>
 
-      <div id="supply-item-input" class="input-field col l2">
-    <%= form.date_select :end_date, id: :discount_end_date %>
+      <div id="new-discount-input" class="input-field col l2">
+        <%= form.text_field :end_date, id: :discount_end_date, class: "datepicker", placeholder: 'Podaj datę zakończenia' %>
+        <label for="discount_end_date" generated="true" class="error error_label"></label>
   </div>
 
-      <div id="supply-item-input" class="input-field col l2">
+      <div id="new-discount-input" class="input-field col l2">
+        <%= form.label :percentage_value, "Podaj % zniżki" %>
     <%= form.text_field :percentage_value, id: :discount_percentage_value %>
+        <label for="discount_percentage_value" generated="true" class="error error_label"></label>
   </div>
+      <div id="new-discount-input" class="input-field col l2">
+        <%= form.fields_for :cars_to_sell_discounts do |car| %>
+        <%= car.collection_select :cars_to_sell_id, CarsToSell.all, :id, :combined_value, :prompt => 'Wybierz auto'%>
+          <label for="discount_car_car_id" generated="true" class="error error_label"></label>
+        <% end %>
+      </div>
     </div>
     <div class="row add-supply-item">
       <div class="btn right">
@@ -44,3 +56,46 @@
     </div>
 <% end %>
 </div>
+<script>
+    $(document).ready(function() {
+        <%= render "validate.js" %>
+        $('select').material_select({
+            belowOrigin: true
+        });
+        $.extend($.fn.pickadate.defaults, {
+            monthsFull: [ 'Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień' ],
+            monthsShort: [ 'Sty', 'Lut', 'Mar', 'Kwi', 'Maj', 'Cze', 'Lip', 'Sie', 'Wrz', 'Paź', 'Lis', 'Gru' ],
+            weekdaysFull: [ 'Niedziela', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota' ],
+            weekdaysShort: [ 'Nie', 'Pon', 'Wto', 'Śro', 'Czw', 'Pią', 'Sob' ],
+            weekdaysLetter: [ 'N', 'P', 'W', 'Ś', 'C', 'P', 'S' ],
+            today: 'Dziś',
+            clear: 'Wyczyść',
+            close: 'Zatwierdź',
+            formatSubmit: 'yyyy-mm-dd'
+        });
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15, // Creates a dropdown of 15 years to control year,
+            firstDay: 1,
+            min: true,
+            formatSubmit: 'yyyy-mm-dd',
+            format: 'yyyy/mm/dd',
+            hiddenName: false,
+            closeOnSelect: false
+        });
+        $('.datepicker').on('change', function() {
+            if($(this).attr('id') === 'discount_start_date'){
+                $('#discount_end_date').pickadate('picker').set('min', $(this).val());
+            }
+            if($(this).attr('id') === 'discount_end_date'){
+                $('#discount_start_date').pickadate('picker').set('max', $(this).val());
+            }
+        });
+    });
+    $(document).on('page:load', function() {
+        <%= render "validate.js" %>
+        $('select').material_select({
+            belowOrigin: true
+        });
+    });
+</script>

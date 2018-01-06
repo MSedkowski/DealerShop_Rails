@@ -10,6 +10,7 @@
       <th>Od</th>
       <th>Do</th>
       <th>Wartość w %</th>
+      <th>Auto</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,7 +22,9 @@
         <td><%= discount.start_date %></td>
         <td><%= discount.end_date %></td>
         <td><%= discount.percentage_value %></td>
-        <td><%= link_to 'Pokaż', discount %></td>
+        <td><% discount.cars_to_sells.each do |car| %>
+            <%= car.combined_value%>
+            <% end %></td>
         <td><%= link_to 'Edytuj', edit_discount_path(discount) %></td>
         <td><%= link_to 'Usuń', discount, method: :delete, data: { confirm: 'Czy jesteś pewien?' } %></td>
       </tr>

@@ -41,7 +41,7 @@ $("#new_service_center").validate({
             minlength: "Nazwa modelu nie może być krótsza niż 3 znaki"
         },
         "service_center[license_plate]":{
-            required: "Należy wybrać numer rejestracyjny pojazdu."
+            required: "Należy podać numer rejestracyjny pojazdu."
         },
         "service_center[status]":{
             required: "Należy wybrać status zlecenia."

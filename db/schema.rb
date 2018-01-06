@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171231101424) do
+ActiveRecord::Schema.define(version: 20180106183451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20171231101424) do
   end
 
   create_table "cars_to_sell_discounts", id: :serial, force: :cascade do |t|
-    t.integer "car_id", null: false
+    t.integer "cars_to_sell_id", null: false
     t.integer "discount_id", null: false
   end
 
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20171231101424) do
     t.string "discount_name", limit: 50, null: false
     t.date "start_date", null: false
     t.date "end_date", null: false
-    t.decimal "percentage_value", precision: 3, scale: 2, null: false
+    t.integer "percentage_value", null: false
     t.index ["discount_name"], name: "discount_name unique", unique: true
   end
 
@@ -147,7 +147,7 @@ ActiveRecord::Schema.define(version: 20171231101424) do
     t.index ["element"], name: "index_warehouse_on_element", unique: true
   end
 
-  add_foreign_key "cars_to_sell_discounts", "cars_to_sell", column: "car_id", name: "car_id"
+  add_foreign_key "cars_to_sell_discounts", "cars_to_sell", name: "car_id"
   add_foreign_key "cars_to_sell_discounts", "discounts", name: "discount_id"
   add_foreign_key "ordered_cars", "cars_to_sell", column: "car_id", name: "car_id"
   add_foreign_key "ordered_cars", "clients", name: "client_id"
