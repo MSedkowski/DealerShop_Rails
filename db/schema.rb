@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180106220811) do
+ActiveRecord::Schema.define(version: 20180107082738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,7 +131,7 @@ ActiveRecord::Schema.define(version: 20180106220811) do
     t.date "start_date", null: false
     t.date "end_date", null: false
     t.integer "how_many_days", null: false
-    t.string "status ", limit: 30, null: false
+    t.string "status", limit: 30, null: false
   end
 
   create_table "vacations", id: :serial, force: :cascade do |t|

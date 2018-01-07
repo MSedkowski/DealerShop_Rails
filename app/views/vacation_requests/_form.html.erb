@@ -1,17 +1,118 @@
-<%= form_with(model: vacation_request, local: true) do |form| %>
-  <% if vacation_request.errors.any? %>
+<div class="row add-supply-item">
+<%= form_for @vacation_request do |form| %>
+  <% if @vacation_request.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(vacation_request.errors.count, "error") %> prohibited this vacation_request from being saved:</h2>
+      <h2><%= pluralize(@vacation_request.errors.count, "error") %> prohibited this vacation_request from being saved:</h2>
 
       <ul>
-      <% vacation_request.errors.full_messages.each do |message| %>
+      <% @vacation_request.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="row add-order-car">
+    <div id="order-car-input" class="input-field col l2 offset-l1">
+      <%= form.collection_select :employee_id, Employee.all,
+                                 :id, :combined_value,
+                                 include_blank: "Wybierz pracownika",
+                                 id: :vacation_request_employee_id%>
+      <label for="vacation_request_employee_id" generated="true" class="error error_label"></label>
+  </div>
+
+    <div id="order-car-input" class="input-field col l2">
+      <%= form.text_field :start_date, id: :vacation_request_start_date, class: "datepicker", placeholder: 'Podaj datę rozpoczęcia' %>
+      <label for="vacation_request_start_date" generated="true" class="error error_label"></label>
+  </div>
+
+    <div id="order-car-input" class="input-field col l2">
+      <%= form.text_field :end_date, id: :vacation_request_end_date, class: "datepicker", placeholder: 'Podaj datę zakończenia' %>
+      <label for="vacation_request_end_date" generated="true" class="error error_label"></label>
+  </div>
+
+    <div id="order-car-input" class="input-field col l2">
+      <p><%= content_tag('span', "Ilość dni:", id: 'VacationTotalDays') %></p>
+      <%= form.text_field :how_many_days, id: :vacation_request_how_many_days, readonly: :true%>
+      <label for="vacation_request_how_many_days" generated="true" class="error error_label"></label>
+  </div>
+
+    <div id="order-car-input" class="input-field col l2">
+      <%= form.select(:status, [['Zgłoszono', 'Zgłoszono'], ['Zgoda', 'Zgoda'],
+                                ['Brak zgody', 'Brak zgody']], include_blank: 'Wybierz status') %>
+      <label for="vacation_request_status" generated="true" class="error error_label"></label>
+  </div>
+  </div>
+
+  <div class="row add-supply-item">
+    <div class="btn right">
+          <span>
+            <%= link_to 'Anuluj', rentings_path %>
+            <i class="material-icons right">cancel</i>
+          </span>
+    </div>
+    <button id="submit-button" class="btn waves-effect waves-light right" type="submit" name="action">
+      <i id="submit-icon" class="material-icons right">send</i>
+      <%= form.submit 'Zapisz'%>
+
+    </button>
   </div>
 <% end %>
+</div>
+<script>
+    $(document).ready(function() {
+        <%= render "validate.js" %>
+        $('select').material_select({
+
+            belowOrigin: true
+
+        });
+        $(".initialized").css({display: "none", height: 0, padding: 0, width: 0});
+        $.extend($.fn.pickadate.defaults, {
+            monthsFull: [ 'Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień' ],
+            monthsShort: [ 'Sty', 'Lut', 'Mar', 'Kwi', 'Maj', 'Cze', 'Lip', 'Sie', 'Wrz', 'Paź', 'Lis', 'Gru' ],
+            weekdaysFull: [ 'Niedziela', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota' ],
+            weekdaysShort: [ 'Nie', 'Pon', 'Wto', 'Śro', 'Czw', 'Pią', 'Sob' ],
+            weekdaysLetter: [ 'N', 'P', 'W', 'Ś', 'C', 'P', 'S' ],
+            today: 'Dziś',
+            clear: 'Wyczyść',
+            close: 'Zatwierdź',
+            formatSubmit: 'yyyy-mm-dd'
+        });
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15, // Creates a dropdown of 15 years to control year,
+            firstDay: 1,
+            min: true,
+            formatSubmit: 'yyyy-mm-dd',
+            format: 'yyyy/mm/dd',
+            hiddenName: false,
+            closeOnSelect: false
+        });
+        function treatAsUTC(date) {
+            var result = new Date(date);
+            result.setMinutes(result.getMinutes() - result.getTimezoneOffset());
+            return result;
+        }
+
+        var millisecondsPerDay = 24 * 60 * 60 * 1000;
+        var totalDays = 0;
+        $('.datepicker').on('change', function() {
+            if($(this).attr('id') === 'vacation_request_start_date'){
+                $('#vacation_request_end_date').pickadate('picker').set('min', $(this).val());
+                totalDays = (treatAsUTC($('#vacation_request_end_date').val()) - treatAsUTC($(this).val()))/millisecondsPerDay;
+                $('#VacationTotalDays').attr('value', totalDays);
+            }
+            if($(this).attr('id') === 'vacation_request_end_date'){
+                $('#vacation_request_start_date').pickadate('picker').set('max', $(this).val());
+                totalDays = (treatAsUTC($(this).val()) - treatAsUTC($('#vacation_request_start_date').val()))/millisecondsPerDay;
+                $('#vacation_request_how_many_days').attr('value', totalDays);
+            }
+        });
+
+
+
+
+
+    });
+</script>
