@@ -10,7 +10,6 @@
       <th>Nazwisko</th>
       <th>Email</th>
       <th>Telefon</th>
-      <th>Hasło</th>
       <th>Pozycja</th>
       <th>Pensja</th>
       <th>Płatne wolne</th>
@@ -27,13 +26,11 @@
         <td><%= employee.surname %></td>
         <td><%= employee.email %></td>
         <td><%= employee.phone_number %></td>
-        <td><%= employee.password %></td>
         <td><%= employee.position %></td>
         <td><%= employee.salary %></td>
         <td><%= employee.days_of_paid_leave %></td>
         <td><%= employee.date_of_employment %></td>
         <td><%= employee.bonuses %></td>
-        <td><%= link_to 'Pokaż', employee %></td>
         <td><%= link_to 'Edytuj', edit_employee_path(employee) %></td>
         <td><%= link_to 'Usuń', employee, method: :delete, data: { confirm: 'Czy jesteś pewien?' } %></td>
       </tr>

@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="241dacdb-07ed-4149-8de6-9c102ae60f19" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app/controllers/ordered_cars_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/ordered_cars_controller.rb" />
-      <change beforePath="$PROJECT_DIR$/app/models/ordered_car.rb" afterPath="$PROJECT_DIR$/app/models/ordered_car.rb" />
-      <change beforePath="$PROJECT_DIR$/app/views/ordered_cars/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/ordered_cars/_form.html.erb" />
-      <change beforePath="$PROJECT_DIR$/app/views/ordered_cars/index.html.erb" afterPath="$PROJECT_DIR$/app/views/ordered_cars/index.html.erb" />
-      <change beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/employees_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/employees_controller.rb" />
+      <change beforePath="$PROJECT_DIR$/app/views/discounts/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/discounts/_form.html.erb" />
+      <change beforePath="$PROJECT_DIR$/app/views/employees/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/employees/_form.html.erb" />
+      <change beforePath="$PROJECT_DIR$/app/views/employees/index.html.erb" afterPath="$PROJECT_DIR$/app/views/employees/index.html.erb" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -56,10 +55,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/views/warehouses/_form.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/supplies/_validate.js" />
-        <option value="$PROJECT_DIR$/app/views/faults/_validate.js" />
-        <option value="$PROJECT_DIR$/app/views/faults/_form.html.erb" />
         <option value="$PROJECT_DIR$/app/views/faults/index.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/faults_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/service_centers/new.html.erb" />
@@ -94,7 +89,6 @@
         <option value="$PROJECT_DIR$/db/schema.rb" />
         <option value="$PROJECT_DIR$/app/views/discounts/_validate.js" />
         <option value="$PROJECT_DIR$/app/models/cars_to_sell_discount.rb" />
-        <option value="$PROJECT_DIR$/app/views/discounts/_form.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/discounts_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/cars_to_sell_discounts_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/discount.rb" />
@@ -107,6 +101,11 @@
         <option value="$PROJECT_DIR$/app/controllers/ordered_cars_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/ordered_cars/index.html.erb" />
         <option value="$PROJECT_DIR$/app/models/ordered_car.rb" />
+        <option value="$PROJECT_DIR$/app/views/discounts/_form.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/employees/index.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/employees_controller.rb" />
+        <option value="$PROJECT_DIR$/app/views/employees/_form.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/employees/_validate.js" />
       </list>
     </option>
   </component>
@@ -183,7 +182,7 @@
               <item name="dealer" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="cars_to_sells" type="462c0819:PsiDirectoryNode" />
+              <item name="clients" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="dealer" type="b2602c69:ProjectViewProjectNode" />
@@ -197,42 +196,14 @@
               <item name="dealer" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="employees" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dealer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dealer" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="ordered_cars" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dealer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dealer" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="rentings" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dealer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dealer" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="service_centers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dealer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dealer" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="service_faults" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dealer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dealer" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="supplies" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dealer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dealer" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="warehouses" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="dealer" type="b2602c69:ProjectViewProjectNode" />
@@ -399,12 +370,12 @@
       <workItem from="1514496756924" duration="41870000" />
       <workItem from="1514713043161" duration="10442000" />
       <workItem from="1514884411713" duration="68816000" />
-      <workItem from="1515270574380" duration="6483000" />
+      <workItem from="1515270574380" duration="10759000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="227595000" />
+    <option name="totallyTimeSpent" value="231871000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1157" y="-28" width="1377" height="912" extended-state="6" />
@@ -442,49 +413,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/rental_cars/_validate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="9" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="37" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/rental_cars_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="44" column="50" lean-forward="false" selection-start-line="44" selection-start-column="50" selection-end-line="44" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/renting.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="25" lean-forward="false" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/rentings_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="667">
-          <caret line="74" column="0" lean-forward="false" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/rentings/index.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="40" column="24" lean-forward="false" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/rental_cars/index.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="59" lean-forward="false" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/_navbar.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
@@ -525,13 +453,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="11" column="22" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="45" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/discounts/_validate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="738">
-          <caret line="41" column="40" lean-forward="false" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -595,13 +516,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/discounts/_form.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="38" column="50" lean-forward="false" selection-start-line="38" selection-start-column="50" selection-end-line="38" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/service_center.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -627,6 +541,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="613">
           <caret line="72" column="132" lean-forward="false" selection-start-line="72" selection-start-column="132" selection-end-line="72" selection-end-column="132" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -789,14 +704,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/ordered_cars/_form.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="16" column="48" lean-forward="false" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/cars_to_sells/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -825,6 +732,78 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="31" column="35" lean-forward="false" selection-start-line="31" selection-start-column="35" selection-end-line="31" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/discounts/_form.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1373">
+          <caret line="81" column="33" lean-forward="false" selection-start-line="81" selection-start-column="33" selection-end-line="81" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/discounts/_validate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="667">
+          <caret line="45" column="3" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="45" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/clients/_validate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="32" column="3" lean-forward="false" selection-start-line="29" selection-start-column="2" selection-end-line="32" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/ordered_cars/_form.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="631">
+          <caret line="61" column="82" lean-forward="false" selection-start-line="61" selection-start-column="8" selection-end-line="61" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/clients/_form.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="34" column="105" lean-forward="false" selection-start-line="34" selection-start-column="93" selection-end-line="34" selection-end-column="105" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/employees/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="22" lean-forward="false" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/employees_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="48" column="31" lean-forward="false" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/employees/_form.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="39" column="27" lean-forward="false" selection-start-line="39" selection-start-column="27" selection-end-line="39" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/employees/_validate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-359">
+          <caret line="25" column="22" lean-forward="false" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
           <folding />
         </state>
       </provider>
