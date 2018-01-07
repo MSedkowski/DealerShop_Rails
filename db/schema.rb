@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171227135357) do
+ActiveRecord::Schema.define(version: 20180107082738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20171227135357) do
   end
 
   create_table "cars_to_sell_discounts", id: :serial, force: :cascade do |t|
-    t.integer "car_id", null: false
+    t.integer "cars_to_sell_id", null: false
     t.integer "discount_id", null: false
   end
 
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20171227135357) do
     t.string "email", limit: 30, null: false
     t.string "phone_number", limit: 9, null: false
     t.string "password", null: false
-    t.integer "employee"
+    t.integer "employee_id"
     t.boolean "use_renting"
     t.boolean "use_service"
     t.boolean "buy_car"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20171227135357) do
     t.string "discount_name", limit: 50, null: false
     t.date "start_date", null: false
     t.date "end_date", null: false
-    t.decimal "percentage_value", precision: 3, scale: 2, null: false
+    t.integer "percentage_value", null: false
     t.index ["discount_name"], name: "discount_name unique", unique: true
   end
 
@@ -65,13 +65,13 @@ ActiveRecord::Schema.define(version: 20171227135357) do
   end
 
   create_table "faults", id: :serial, force: :cascade do |t|
-    t.string "name", limit: 30, null: false
+    t.string "name", null: false
     t.decimal "price", precision: 7, scale: 2, null: false
     t.index ["name"], name: "name", unique: true
   end
 
   create_table "ordered_cars", id: :serial, force: :cascade do |t|
-    t.integer "car_id", null: false
+    t.integer "cars_to_sell_id", null: false
     t.integer "client_id", null: false
     t.string "status", limit: 20, null: false
   end
@@ -83,26 +83,26 @@ ActiveRecord::Schema.define(version: 20171227135357) do
   end
 
   create_table "rentings", id: :serial, force: :cascade do |t|
-    t.integer "car_id", null: false
+    t.integer "rental_car_id", null: false
     t.date "start_date", null: false
     t.date "end_date", null: false
     t.integer "client_id", null: false
   end
 
-  create_table "service_center", id: :integer, force: :cascade do |t|
+  create_table "service_center", id: :serial, force: :cascade do |t|
     t.string "brand", limit: 15, null: false
     t.string "model", limit: 20, null: false
     t.string "license_plate", limit: 15, null: false
     t.string "status", limit: 30, null: false
     t.integer "client_id", null: false
-    t.integer "mechanic", null: false
+    t.integer "employee_id", null: false
     t.date "beginning_date", null: false
     t.date "end_date"
     t.decimal "cost", precision: 7, scale: 2, null: false
   end
 
   create_table "service_faults", id: :serial, force: :cascade do |t|
-    t.integer "service_id", null: false
+    t.integer "service_center_id", null: false
     t.integer "fault_id", null: false
   end
 
@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(version: 20171227135357) do
     t.string "status", limit: 30, null: false
   end
 
-  create_table "supplies_warehouses", force: :cascade do |t|
+  create_table "supplies_warehouses", id: :serial, force: :cascade do |t|
     t.integer "supply_id"
     t.integer "warehouse_id"
     t.integer "amount"
@@ -126,12 +126,12 @@ ActiveRecord::Schema.define(version: 20171227135357) do
     t.index ["warehouse_id"], name: "index_supplies_warehouses_on_warehouse_id"
   end
 
-  create_table "vacation_requests", id: :integer, force: :cascade do |t|
+  create_table "vacation_requests", id: :serial, force: :cascade do |t|
     t.integer "employee_id", null: false
     t.date "start_date", null: false
     t.date "end_date", null: false
     t.integer "how_many_days", null: false
-    t.string "status ", limit: 30, null: false
+    t.string "status", limit: 30, null: false
   end
 
   create_table "vacations", id: :serial, force: :cascade do |t|
@@ -147,17 +147,17 @@ ActiveRecord::Schema.define(version: 20171227135357) do
     t.index ["element"], name: "index_warehouse_on_element", unique: true
   end
 
-  add_foreign_key "cars_to_sell_discounts", "cars_to_sell", column: "car_id", name: "car_id"
+  add_foreign_key "cars_to_sell_discounts", "cars_to_sell", name: "car_id"
   add_foreign_key "cars_to_sell_discounts", "discounts", name: "discount_id"
-  add_foreign_key "ordered_cars", "cars_to_sell", column: "car_id", name: "car_id"
+  add_foreign_key "ordered_cars", "cars_to_sell", name: "car_id"
   add_foreign_key "ordered_cars", "clients", name: "client_id"
   add_foreign_key "rentings", "clients", name: "client_id"
-  add_foreign_key "rentings", "rental_cars", column: "car_id", name: "car_id"
+  add_foreign_key "rentings", "rental_cars", name: "rental_car_id"
   add_foreign_key "service_center", "clients", name: "client_id"
-  add_foreign_key "service_center", "employees", column: "mechanic", name: "employee_id"
+  add_foreign_key "service_center", "employees", name: "employee_id"
   add_foreign_key "service_faults", "faults", name: "fault_id"
-  add_foreign_key "service_faults", "service_center", column: "service_id", name: "service_id"
+  add_foreign_key "service_faults", "service_center", name: "service_id"
   add_foreign_key "supplies", "suppliers", name: "supplier_id"
-  add_foreign_key "vacation_requests", "employees", column: "employee_id", name: "employee_id"
+  add_foreign_key "vacation_requests", "employees", name: "employee_id"
   add_foreign_key "vacations", "employees", name: "employee_id"
 end

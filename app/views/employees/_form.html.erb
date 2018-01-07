@@ -14,46 +14,73 @@
 
     <div class="row add-supply-item">
       <div id="supply-item-input" class="input-field col l3 offset-l1">
+        <%= form.label :name, "Imię" %>
     <%= form.text_field :name, id: :employee_name %>
+        <label for="employee_name" generated="true" class="error error_label"></label>
   </div>
 
       <div id="supply-item-input" class="input-field col l3">
+        <%= form.label :surname, "Nazwisko" %>
     <%= form.text_field :surname, id: :employee_surname %>
+        <label for="employee_surname" generated="true" class="error error_label"></label>
   </div>
 
       <div id="supply-item-input" class="input-field col l2">
+        <%= form.label :email, "Email" %>
     <%= form.text_field :email, id: :employee_email %>
+        <label for="employee_email" generated="true" class="error error_label"></label>
   </div>
 
       <div id="supply-item-input" class="input-field col l2">
-    <%= form.number_field :phone_number, id: :employee_phone_number %>
+        <%= form.label :phone_number, "Telefon" %>
+    <%= form.text_field :phone_number, id: :employee_phone_number, maxlength: 9%>
+        <label for="employee_phone_number" generated="true" class="error error_label"></label>
   </div>
     </div>
     <div class="row add-supply-item">
-      <div id="supply-item-input" class="input-field col l3 offset-l2">
-    <%= form.text_field :password, id: :employee_password %>
+      <div id="supply-item-input" class="input-field col l3 offset-l1">
+        <%= form.label :password, "Hasło" %>
+    <%= form.password_field :password, id: :employee_password %>
+        <label for="employee_password" generated="true" class="error error_label"></label>
   </div>
 
-      <div id="supply-item-input" class="input-field col l3">
-    <%= form.text_field :position, id: :employee_position %>
+      <div id="client-input" class="input-field col l3">
+        <%= form.label :confirmation, "Podaj ponownie hasło" %>
+        <%= form.password_field :confirmation, id: :employee_confirmation%>
+        <label for="employee_confirmation" generated="true" class="error error_label"></label>
+      </div>
+
+      <div id="supply-item-input" class="input-field col l2">
+        <%= form.select(:position, [['Mechanik', 'Mechanik'], ['Sprzedawca', 'Sprzedawca'],
+                                  ['Kierownik', 'Kierownik'], ['Magazynier', 'Magazynier'],
+                                  ['Dyrektor', 'Dyrektor'], ['Księgowy', 'Księgowy']], include_blank: 'Wybierz stanowisko') %>
+        <label for="employee_position" generated="true" class="error error_label"></label>
   </div>
 
       <div id="supply-item-input" class="input-field col l2">
+        <%= form.label :salary, "Wynagrodzenie" %>
     <%= form.text_field :salary, id: :employee_salary %>
+        <label for="employee_salary" generated="true" class="error error_label"></label>
   </div>
     </div>
     <div class="row add-supply-item">
       <div id="supply-item-input" class="input-field col l3 offset-l2">
-    <%= form.number_field :days_of_paid_leave, id: :employee_days_of_paid_leave %>
+        <%= form.label :days_of_paid_leave, "Ilość dni wolnych" %>
+    <%= form.text_field :days_of_paid_leave, id: :employee_days_of_paid_leave %>
+        <label for="employee_days_of_paid_leave" generated="true" class="error error_label"></label>
   </div>
 
       <div id="supply-item-input" class="input-field col l2">
-    <%= form.date_select :date_of_employment, id: :employee_date_of_employment %>
-  </div>
+        <%= form.text_field :date_of_employment, id: :employee_date_of_employment, class: "datepicker", placeholder: 'Data zatrudnienia' %>
+        <label for="employee_date_of_employment" generated="true" class="error error_label"></label>
+      </div>
 
       <div id="supply-item-input" class="input-field col l3">
+        <%= form.label :bonuses, "Premia" %>
     <%= form.text_field :bonuses, id: :employee_bonuses %>
-  </div>
+        <label for="employee_bonuses" generated="true" class="error error_label"></label>
+
+      </div>
     </div>
   <div class="row add-supply-item">
     <div class="btn right">
@@ -70,3 +97,33 @@
   </div>
 <% end %>
 </div>
+<script>
+    $(document).ready(function() {
+        <%= render "validate.js" %>
+        $('select').material_select({
+            belowOrigin: true
+        });
+        $.extend($.fn.pickadate.defaults, {
+            monthsFull: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'],
+            monthsShort: ['Sty', 'Lut', 'Mar', 'Kwi', 'Maj', 'Cze', 'Lip', 'Sie', 'Wrz', 'Paź', 'Lis', 'Gru'],
+            weekdaysFull: ['Niedziela', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota'],
+            weekdaysShort: ['Nie', 'Pon', 'Wto', 'Śro', 'Czw', 'Pią', 'Sob'],
+            weekdaysLetter: ['N', 'P', 'W', 'Ś', 'C', 'P', 'S'],
+            today: 'Dziś',
+            clear: 'Wyczyść',
+            close: 'Zatwierdź',
+            formatSubmit: 'yyyy-mm-dd'
+        });
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 20,
+            max: true,
+            firstDay: 1,
+            formatSubmit: 'yyyy-mm-dd',
+            format: 'yyyy/mm/dd',
+            hiddenName: false,
+            closeOnSelect: false
+        });
+        $(".initialized").css({display: "none", height: 0, padding: 0, width: 0});
+    });
+</script>

@@ -28,8 +28,8 @@ class CarsToSellsController < ApplicationController
 
     respond_to do |format|
       if @cars_to_sell.save
-        format.html { redirect_to @cars_to_sell, notice: 'Cars to sell was successfully created.' }
-        format.json { render :show, status: :created, location: @cars_to_sell }
+        format.html { redirect_to cars_to_sells_path, notice: 'Cars to sell was successfully created.' }
+        format.json { render :index, status: :created, location: @cars_to_sell }
       else
         format.html { render :new }
         format.json { render json: @cars_to_sell.errors, status: :unprocessable_entity }
@@ -42,8 +42,8 @@ class CarsToSellsController < ApplicationController
   def update
     respond_to do |format|
       if @cars_to_sell.update(cars_to_sell_params)
-        format.html { redirect_to @cars_to_sell, notice: 'Cars to sell was successfully updated.' }
-        format.json { render :show, status: :ok, location: @cars_to_sell }
+        format.html { redirect_to cars_to_sells_path, notice: 'Cars to sell was successfully updated.' }
+        format.json { render :index, status: :ok, location: @cars_to_sell }
       else
         format.html { render :edit }
         format.json { render json: @cars_to_sell.errors, status: :unprocessable_entity }

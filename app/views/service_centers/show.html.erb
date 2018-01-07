@@ -1,49 +1,88 @@
-<p id="notice"><%= notice %></p>
+<div class="main-field">
+  <div class="row header-row">
+    <h3 class="col s6 offset-s3" id="supply-list-header">Dane szczegółowe zlecenia naprawy nr: <%=@service_center.id%></h3>
+  </div>
 
-<p>
-  <strong>Brand:</strong>
-  <%= @service_center.brand %>
-</p>
+  <div class="row">
+    <div class="col l2">
+  <h6 class="center">Marka auta:</h6>
+      <p class="center"><%= @service_center.brand %></p>
+    </div>
+    <div class="col l2">
+      <h6 class="center">Model auta:</h6>
+    <p class="center"><%= @service_center.model %></p>
+    </div>
+    <div class="col l2">
+      <h6 class="center">Numer rejestracyjny:</h6>
+  <p class="center"><%= @service_center.license_plate %></p>
+    </div>
+    <div class="col l2">
+      <h6 class="center">Status naprawy:</h6>
+  <p class="center"><%= @service_center.status %></p>
+    </div>
+    <div class="col l2">
+      <h6 class="center">Klient:</h6>
+  <p class="center"><%= @service_center.client.combined_value %></p>
+    </div>
+    <div class="col l2">
+      <h6 class="center">Mechanik:</h6>
+  <p class="center"><%= @service_center.employee.combined_name %></p>
+    </div>
+  </div>
+  <div class="row">
+    <table class="striped col l8 offset-l2">
+      <thead>
+      <tr>
+        <th>L.p.</th>
+        <th>Nazwa usługi</th>
+        <th>Cena</th>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
 
-<p>
-  <strong>Model:</strong>
-  <%= @service_center.model %>
-</p>
+      <tbody>
+      <% id = 1%>
+      <% @service_center.faults.each do |service_center| %>
+        <tr>
+          <td><%= id %></td>
+          <td><%= service_center.name %></td>
+          <td><%= service_center.price %></td>
+        </tr>
+      <% id += 1 %>
+        <% end %>
+        </tbody>
+    </table>
+  </div>
+  <div class="row">
+    <div class="col l2 offset-l3">
+      <h6 class="center">Data przyjęcia:</h6>
+  <p class="center"><%= @service_center.beginning_date %></p>
+    </div>
+    <div class="col l2">
+      <h6 class="center">Data zakończenia:</h6>
+  <p class="center"><%= @service_center.end_date %></p>
+    </div>
+    <div class="col l2">
+      <h6 class="center">Koszt całkowity:</h6>
+  <p class="center"><%= @service_center.cost %></p>
+    </div>
+  </div>
+  <div class="row">
+  </div>
+</div>
+<% if(@service_center.status != 'Zakończono') %>
+  <div class="btn right">
+          <span>
+            <%= link_to 'Edycja', edit_service_center_path(@service_center) %>
+            <i class="material-icons right">edit</i>
+          </span>
+  </div>
 
-<p>
-  <strong>License plate:</strong>
-  <%= @service_center.license_plate %>
-</p>
+  <% end %>
+<div class="btn right">
+          <span>
+            <%= link_to 'Powrót', service_centers_path %>
+            <i class="material-icons right">arrow_back</i>
+          </span>
+</div>
 
-<p>
-  <strong>Status:</strong>
-  <%= @service_center.status %>
-</p>
-
-<p>
-  <strong>Client:</strong>
-  <%= @service_center.client %>
-</p>
-
-<p>
-  <strong>Mechanic:</strong>
-  <%= @service_center.mechanic %>
-</p>
-
-<p>
-  <strong>Beginning date:</strong>
-  <%= @service_center.beginning_date %>
-</p>
-
-<p>
-  <strong>End date:</strong>
-  <%= @service_center.end_date %>
-</p>
-
-<p>
-  <strong>Cost:</strong>
-  <%= @service_center.cost %>
-</p>
-
-<%= link_to 'Edit', edit_service_center_path(@service_center) %> |
-<%= link_to 'Back', service_centers_path %>

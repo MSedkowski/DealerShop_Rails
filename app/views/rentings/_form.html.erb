@@ -12,20 +12,30 @@
     </div>
   <% end %>
     <div class="row add-supply-item">
-      <div id="supply-item-input" class="input-field col l4 offset-l1">
-    <%= form.text_field :car_id, id: :renting_car_id %>
+      <div id="renting-input" class="input-field col l4 offset-l1">
+        <%= form.collection_select :rental_car_id, RentalCar.all,
+                                   :id, :combined_value,
+                                   include_blank: "Wybierz auto",
+                                   id: :renting_car%>
+        <label for="renting_rental_car_id" generated="true" class="error error_label"></label>
   </div>
 
-      <div id="supply-item-input" class="input-field col l2">
-    <%= form.date_select :start_date, id: :renting_start_date %>
-  </div>
+      <div id="renting-input" class="input-field col l2">
+        <%= form.text_field :start_date, id: :renting_start_date, class: "datepicker", placeholder: 'Podaj datę rozpoczęcia' %>
+        <label for="renting_start_date" generated="true" class="error error_label"></label>
+      </div>
+
+      <div id="renting-input" class="input-field col l2">
+    <%= form.text_field :end_date, id: :renting_end_date, class: "datepicker", placeholder: 'Podaj datę zakończenia' %>
+        <label for="renting_end_date" generated="true" class="error error_label"></label>
+      </div>
 
       <div id="supply-item-input" class="input-field col l2">
-    <%= form.date_select :end_date, id: :renting_end_date %>
-  </div>
-
-      <div id="supply-item-input" class="input-field col l2">
-    <%= form.text_field :client_id, id: :renting_client_id %>
+        <%= form.collection_select :client_id, Client.all,
+                                   :id, :combined_value,
+                                   include_blank: "Wybierz klienta",
+                                   id: :renting_client%>
+        <label for="renting_client_id" generated="true" class="error error_label"></label>
   </div>
     </div>
 
@@ -44,3 +54,43 @@
     </div>
 <% end %>
 </div>
+<script>
+    $(document).ready(function() {
+        <%= render "validate.js" %>
+
+        $('select').material_select({
+            belowOrigin: true
+        });
+        $(".initialized").css({display: "none", height: 0, padding: 0, width: 0});
+        $.extend($.fn.pickadate.defaults, {
+            monthsFull: [ 'Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień' ],
+            monthsShort: [ 'Sty', 'Lut', 'Mar', 'Kwi', 'Maj', 'Cze', 'Lip', 'Sie', 'Wrz', 'Paź', 'Lis', 'Gru' ],
+            weekdaysFull: [ 'Niedziela', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota' ],
+            weekdaysShort: [ 'Nie', 'Pon', 'Wto', 'Śro', 'Czw', 'Pią', 'Sob' ],
+            weekdaysLetter: [ 'N', 'P', 'W', 'Ś', 'C', 'P', 'S' ],
+            today: 'Dziś',
+            clear: 'Wyczyść',
+            close: 'Zatwierdź',
+            formatSubmit: 'yyyy-mm-dd'
+        });
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15, // Creates a dropdown of 15 years to control year,
+            firstDay: 1,
+            min: true,
+            formatSubmit: 'yyyy-mm-dd',
+            format: 'yyyy/mm/dd',
+            hiddenName: false,
+            closeOnSelect: false
+        });
+        $('.datepicker').on('change', function() {
+            if($(this).attr('id') === 'renting_start_date'){
+                $('#renting_end_date').pickadate('picker').set('min', $(this).val());
+            }
+            if($(this).attr('id') === 'renting_end_date'){
+                $('#renting_start_date').pickadate('picker').set('max', $(this).val());
+            }
+        });
+    });
+</script>
+

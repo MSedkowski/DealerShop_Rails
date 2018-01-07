@@ -15,6 +15,7 @@ class DiscountsController < ApplicationController
   # GET /discounts/new
   def new
     @discount = Discount.new
+    @discount.cars_to_sell_discounts.build
   end
 
   # GET /discounts/1/edit
@@ -28,8 +29,8 @@ class DiscountsController < ApplicationController
 
     respond_to do |format|
       if @discount.save
-        format.html { redirect_to @discount, notice: 'Discount was successfully created.' }
-        format.json { render :show, status: :created, location: @discount }
+        format.html { redirect_to discounts_path, notice: 'Discount was successfully created.' }
+        format.json { render :index, status: :created, location: @discount }
       else
         format.html { render :new }
         format.json { render json: @discount.errors, status: :unprocessable_entity }
@@ -42,8 +43,8 @@ class DiscountsController < ApplicationController
   def update
     respond_to do |format|
       if @discount.update(discount_params)
-        format.html { redirect_to @discount, notice: 'Discount was successfully updated.' }
-        format.json { render :show, status: :ok, location: @discount }
+        format.html { redirect_to discounts_path, notice: 'Discount was successfully updated.' }
+        format.json { render :index, status: :ok, location: @discount }
       else
         format.html { render :edit }
         format.json { render json: @discount.errors, status: :unprocessable_entity }
@@ -69,6 +70,6 @@ class DiscountsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def discount_params
-      params.require(:discount).permit(:discount_name, :start_date, :end_date, :percentage_value)
+      params.require(:discount).permit(:id, :discount_name, :start_date, :end_date, :percentage_value, cars_to_sell_discounts_attributes: [:id, :cars_to_sell_id, :_destroy])
     end
 end

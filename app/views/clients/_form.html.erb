@@ -37,28 +37,41 @@
   </div>
 </div>
 
-<div class="col l8 offset-l2">
+
 <div class="row add-client">
-  <div id="client-input" class="input-field col l6 without-padding-left">
+  <div id="client-input" class="input-field col l4">
     <%= form.password_field :password, id: :client_password, type: "password", placeholder: "Hasło"%>
     <label for="client_password" generated="true" class="error error_label"></label>
   </div>
 
-  <div id="client-input" class="input-field col l6 without-padding-right">
+  <div id="client-input" class="input-field col l4">
     <%= form.password_field :confirmation, id: :client_confirmation, type: "password", placeholder: "Podaj ponownie hasło"%>
     <label for="client_confirmation" generated="true" class="error error_label"></label>
   </div>
-</div>
 
+
+    <div id="client-input" class="input-field col l4">
+      <%= form.collection_select :employee_id, Employee.all,
+                                        :id, :combined_value,
+                                        include_blank: 'Przypisz pracownika',
+                                        id: :client_employee%>
+      <label for="client_employee" generated="true" class="error error_label"></label>
+    </div>
+</div>
 <div class="row add-client">
     <button id="submit-button" class="btn waves-effect waves-light right" type="submit" name="action">
       <i id="submit-icon" class="material-icons right">send</i>
     <%= form.submit "Zapisz"%>
     </button>
 </div>
-</div>
+
 <% end %>
 </div>
 <script type="text/javascript">
   <%= render "validate.js" %>
+  $(document).ready(function() {
+      $('select').material_select({
+          belowOrigin: true
+      });
+  });
 </script>

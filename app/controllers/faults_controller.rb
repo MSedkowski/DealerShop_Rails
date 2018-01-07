@@ -28,8 +28,8 @@ class FaultsController < ApplicationController
 
     respond_to do |format|
       if @fault.save
-        format.html { redirect_to @fault, notice: 'Fault was successfully created.' }
-        format.json { render :show, status: :created, location: @fault }
+        format.html { redirect_to faults_url, notice: 'Fault was successfully created.' }
+        format.json { render :index, status: :created, location: @fault }
       else
         format.html { render :new }
         format.json { render json: @fault.errors, status: :unprocessable_entity }
@@ -42,8 +42,8 @@ class FaultsController < ApplicationController
   def update
     respond_to do |format|
       if @fault.update(fault_params)
-        format.html { redirect_to @fault, notice: 'Fault was successfully updated.' }
-        format.json { render :show, status: :ok, location: @fault }
+        format.html { redirect_to faults_url, notice: 'Fault was successfully updated.' }
+        format.json { render :index, status: :ok, location: @fault }
       else
         format.html { render :edit }
         format.json { render json: @fault.errors, status: :unprocessable_entity }

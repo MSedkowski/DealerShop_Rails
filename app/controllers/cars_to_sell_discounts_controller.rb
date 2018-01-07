@@ -69,6 +69,6 @@ class CarsToSellDiscountsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cars_to_sell_discount_params
-      params.require(:cars_to_sell_discount).permit(:car_id, :discount_id)
+      params.require(:cars_to_sell_discount).permit(:cars_to_sell_id, :discount_id)
     end
 end

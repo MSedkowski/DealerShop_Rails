@@ -1,55 +1,106 @@
 <div class="row add-supply-item">
-<%= form_for @service_center do |form| %>
-  <% if @service_center.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@service_center.errors.count, "error") %> prohibited this service_center from being saved:</h2>
+  <%= form_for @service_center do |form| %>
+    <% if @service_center.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@service_center.errors.count, "error") %> prohibited this service_center from being saved:</h2>
 
-      <ul>
-      <% @service_center.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <ul>
+          <% @service_center.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="row add-supply-item">
+      <div id="supply-item-input" class="input-field col l4">
+        <%= form.label :brand, "Podaj markę auta" %>
+        <%= form.text_field :brand, id: :service_center_brand %>
+        <label for="service_center_brand" generated="true" class="error error_label"></label>
+      </div>
+
+      <div id="supply-item-input" class="input-field col l4">
+        <%= form.label :model, "Podaj model auta" %>
+        <%= form.text_field :model, id: :service_center_model %>
+        <label for="service_center_model" generated="true" class="error error_label"></label>
+      </div>
+
+      <div id="supply-item-input" class="input-field col l4">
+        <%= form.label :license_plate, "Podaj numer rejestracyjny" %>
+        <%= form.text_field :license_plate, id: :service_center_license_plate %>
+        <label for="service_center_license_plate" generated="true" class="error error_label"></label>
+      </div>
+    </div>
+    <div class="row add-supply-item">
+      <div id="supply-item-input" class="input-field col l3 offset-l2">
+        <%= form.select(:status, [['Przyjęto', 'Przyjęto'], ['W realizacji', 'W realizacji'],
+                                  ['Zakończono', 'Zakończono']], include_blank: "Wybierz status") %>
+        <label for="service_center_status" generated="true" class="error error_label"></label>
+      </div>
+
+      <div id="supply-item-input" class="input-field col l3">
+        <%= form.collection_select :client_id, Client.all,
+                                   :id, :combined_value,
+                                   include_blank: "Wybierz klienta",
+                                   id: :service_center_client%>
+        <label for="service_center_client_id" generated="true" class="error error_label"></label>
+      </div>
+
+      <div id="supply-item-input" class="input-field col l2">
+        <%= form.collection_select :employee_id, Employee.all.where("position = 'mechanik'"),
+                                   :id, :combined_name,
+                                   include_blank: "Przypisz pracownika",
+                                   id: :service_center_employee%>
+        <label for="service_center_employee_id" generated="true" class="error error_label"></label>
+      </div>
+
+    </div>
+
+
+    <div class="row add-supply-item">
+
+
+        <div class="col l2 offset-l1">
+          <a class="btn-floating btn-medium waves-effect waves-light green" id="add-service">
+            <i class="material-icons">add</i></a>
+          <a class="btn-floating btn-medium waves-effect waves-light red" id="delete-service">
+            <i class="material-icons">remove</i></a>
+        </div>
+
+        <div id="service-center" class="input-field col l2 offset-l2">
+          <h5 class="center">Lista napraw:</h5>
+        </div>
+
+        </div>
+    <%= form.fields_for :service_faults do |service| %>
+        <div id="service-list">
+          <div class="services">
+            <div class="row add-supply-item">
+            <div id="service-center-select" class="input-field col l3 offset-l4">
+              <%= service.collection_select :fault_id, Fault.all, :id, :name, :prompt => 'Wybierz usługę'%>
+              <%= service.hidden_field(:_destroy) %>
+              <label for="service_center_service_faults_attributes_0_fault_id" generated="true" class="error error_label service"></label>
+            </div>
+
+            <div id="service-center-price" class="input-field col l2">
+              <p>Koszt: <%= content_tag('span', "", id: 'FaultCost_0', class: 'service_center_service_faults_attributes_0_fault_id') %></p>
+            </div>
+            </div>
+          </div>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-
     <div class="row add-supply-item">
-      <div id="supply-item-input" class="input-field col l4">
-    <%= form.text_field :brand, id: :service_center_brand %>
-  </div>
 
-      <div id="supply-item-input" class="input-field col l4">
-    <%= form.text_field :model, id: :service_center_model %>
-  </div>
+      <div id="supply-item-input" class="input-field col l2 offset-l6">
+        <p class="right">Całkowity koszt:</p>
+      </div>
 
-      <div id="supply-item-input" class="input-field col l4">
-    <%= form.text_field :license_plate, id: :service_center_license_plate %>
-  </div>
-    </div>
-    <div class="row add-supply-item">
-      <div id="supply-item-input" class="input-field col l4">
-    <%= form.text_field :status, id: :service_center_status %>
-  </div>
+      <div id="supply-item-input" class="input-field col l2">
+        <p><%= content_tag('span', "", id: 'FaultTotalCost') %></p>
+        <%= form.text_field :cost, id: :service_center_cost, readonly: :true%>
+        <label for="service_center_cost" generated="true" class="error error_label"></label>
+      </div>
 
-      <div id="supply-item-input" class="input-field col l4">
-    <%= form.text_field :client_id, id: :service_center_client_id %>
-  </div>
-
-      <div id="supply-item-input" class="input-field col l4">
-    <%= form.number_field :mechanic, id: :service_center_mechanic %>
-  </div>
-    </div>
-    <div class="row add-supply-item">
-      <div id="supply-item-input" class="input-field col l4">
-    <%= form.date_select :beginning_date, id: :service_center_beginning_date %>
-  </div>
-
-      <div id="supply-item-input" class="input-field col l4">
-    <%= form.date_select :end_date, id: :service_center_end_date %>
-  </div>
-
-      <div id="supply-item-input" class="input-field col l4">
-    <%= form.text_field :cost, id: :service_center_cost %>
-  </div>
     </div>
     <div class="row add-supply-item">
       <div class="btn right">
@@ -64,5 +115,89 @@
 
       </button>
     </div>
-<% end %>
+  <% end %>
 </div>
+<script>
+
+    $(document).ready(function() {
+        <%= render "validate.js" %>
+
+        $('select').material_select({
+            belowOrigin: true
+        });
+
+        <% @faults = Fault.all %>
+        var faults = <%= @faults.map(&:id) %>;
+        var faultPrice = <%= raw(@faults.map{|fault| [fault.price.to_s]}) %>;
+        $(".initialized").css({display: "none", height: 0, padding: 0, width: 0});
+
+        $(".services").each(function() {
+            var elementId = $(this).find("select[id*='fault_id']").attr('id');
+            $(this).find(".service_center_service_faults_attributes_0_fault_id")
+                .attr('class', elementId);
+        });
+
+        $("select[name*='fault_id']").each(function() {
+            var value = +$(this).val();
+            var elementId = $(this).attr('id');
+            var faultIndex = $.inArray(value, faults);
+            var faultCost = faultPrice[faultIndex];
+            $("." + elementId).text(faultCost);
+        });
+
+        $("select[name*='fault_id']").change(function() {
+            var totalCost = 0;
+            var value = +$(this).val();
+            var elementId = $(this).attr('id');
+            var faultIndex = $.inArray(value, faults);
+            var faultCost = faultPrice[faultIndex];
+            $("." + elementId).text(faultCost);
+            $("span[id*='FaultCost'][type!='hidden']").each(function() {
+                totalCost = parseInt(totalCost) + parseInt($(this).text());
+            })
+            $("#service_center_cost").attr('value', totalCost);
+        });
+
+
+        $('#add-service').on('click', function() {
+
+            var date = new Date();
+            var mSec = date.getTime();
+            idAttributService =
+                "service_center_service_faults_attributes_0_fault_id".replace("0", mSec);
+            nameAttributService =
+                "service_center[service_faults_attributes][0][fault_id]".replace("0", mSec);
+            idAttributPrice =
+                "FaultCost_0".replace("0", mSec);
+
+            $(".services:first").clone(true).insertAfter(".services:last");
+            $(".services").last().find("#service_center_service_faults_attributes_0_fault_id").attr('name', nameAttributService);
+            $(".services").last().find("#service_center_service_faults_attributes_0_fault_id").attr('id', idAttributService);
+            $(".services").last().find(".service").attr('for', idAttributService);
+            $(".services").last().find(".select-dropdown").addClass(idAttributService);
+            $(".services").last().find("span[id='FaultCost_0']").attr('class', idAttributService);
+            $(".services").last().find("span[id='FaultCost_0']").attr('id', idAttributPrice);
+
+            // $("select[name*='fault_id']").each(function() {
+            //     $(this).rules('add', {
+            //         required: true,
+            //         messages: {
+            //             required: "Należy wybrać usługę"
+            //         }
+            //     });
+            // });
+            $('select').material_select({
+                belowOrigin: true
+            });
+            return false;
+        });
+        $('#delete-service').on('click', function() {
+            var cost = parseInt($("#service_center_cost").attr('value'));
+            cost = parseInt(cost) - parseInt($(".services").last().find("span[id=FaultCost_0]").text());
+            $("#service_center_cost").attr('value', cost);
+            $(".services").last().find("span[id='FaultCost_0']").attr('type', 'hidden');
+            $(".services").last().find("input[name*='_destroy']").attr('value', true);
+            $(".services").last().hide().attr('class', "service-delete");
+        });
+    });
+</script>

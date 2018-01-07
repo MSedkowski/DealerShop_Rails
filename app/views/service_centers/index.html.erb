@@ -1,11 +1,13 @@
 <div class="main-field">
+  <p id="notice"><%= notice %></p>
   <div class="row header-row">
     <h3 class="col s6 offset-s3" id="supply-list-header">Centrum Serwisowe</h3>
   </div>
   <div class="row">
-    <table class="striped col l10 offset-l1">
+    <table class="striped col l12">
       <thead>
       <tr>
+        <th>L.p.</th>
         <th>Marka</th>
         <th>Model</th>
         <th>Numer rejestracji</th>
@@ -14,28 +16,44 @@
         <th>Data przyjęcia</th>
         <th>Data zwrotu</th>
         <th>Koszt naprawy</th>
+        <th>Status</th>
         <th colspan="3"></th>
       </tr>
       </thead>
 
       <tbody>
-      <% @service_centers.each do |service_center| %>
+      <% @service_centers.sort.each do |service_center| %>
         <tr>
+          <td><%= service_center.id %></td>
           <td><%= service_center.brand %></td>
           <td><%= service_center.model %></td>
           <td><%= service_center.license_plate %></td>
-          <td><%= service_center.status %></td>
-          <td><%= service_center.client %></td>
-          <td><%= service_center.mechanic %></td>
+          <td><%= service_center.client.combined_value %></td>
+          <td><%= service_center.employee.combined_name %></td>
           <td><%= service_center.beginning_date %></td>
           <td><%= service_center.end_date %></td>
           <td><%= service_center.cost %></td>
+          <td><%= service_center.status %></td>
           <td><%= link_to 'Pokaż', service_center %></td>
-          <td><%= link_to 'Edytuj', edit_service_center_path(service_center) %></td>
-          <td><%= link_to 'Usuń', service_center, method: :delete, data: { confirm: 'Czy jesteś pewien?' } %></td>
+          <td><% if service_center.status != 'Zakończono'%>
+              <%= link_to 'Edytuj', edit_service_center_path(service_center) %>
+            <%end%></td>
+          <td><% if service_center.status != 'Zakończono'%>
+              <%= link_to 'Usuń', service_center, method: :delete, data: { confirm: 'Czy jesteś pewien?' } %>
+            <%end %></td>
+          <td><% if service_center.status != 'Zakończono'%>
+              <%= link_to 'Zakończ', service_centers_path, id: 'close-repair',
+                          data: { confirm: 'Czy na pewno chcesz zakończyć naprawę?'}%>
+              <script>
+                  $('#close-repair').click(function (event) {
+                      <% service_center.update(status: 'Zakończono', end_date: Date.today().to_s)%>
+                  });
+              </script>
+            <%end %></td>
         </tr>
       <% end %>
       </tbody>
     </table>
   </div>
 </div>
+
