@@ -19,10 +19,10 @@ $("#new_warehouse").validate({
     messages: {
         "warehouse[element]":{
             required: "Należy podać nazwę elementu.",
-            minlength: "Nazwa nie może być krótsza niż 3 znaków"
+            minlength: "Nazwa nie może być krótsza niż 3 znaki."
         },
         "warehouse[amount]":{
-            required: "Należy podać ilość.",
+            required: "Należy podać liczbę.",
             min: "Minimalna wartość to 1"
         }
     }

@@ -1,16 +1,5 @@
 <div class="row add-supply-item">
 <%= form_for @discount do |form| %>
-  <% if @discount.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@discount.errors.count, "error") %> prohibited this discount from being saved:</h2>
-
-      <ul>
-      <% @discount.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
     <div class="row add-supply-item">
       <div id="supply-item-input" class="input-field col l4 offset-l1">
