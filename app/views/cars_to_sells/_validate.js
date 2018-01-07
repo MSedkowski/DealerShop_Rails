@@ -40,7 +40,7 @@ $("#new_cars_to_sell").validate({
             min: "Cena nie może być niższa niż 0."
         },
         "cars_to_sell[additional_information]":{
-            required: "Należy podać informację dodatkowe takie jak wyposażenie, napęd itd.."
+            required: "Należy podać informacje dodatkowe takie jak wyposażenie, napęd itd.."
         }
     }
 });

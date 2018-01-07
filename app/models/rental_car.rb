@@ -10,3 +10,4 @@ class RentalCar < ApplicationRecord
     "#{self.brand} | #{self.model}"
   end
 end
+

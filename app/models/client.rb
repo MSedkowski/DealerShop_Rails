@@ -8,3 +8,4 @@ class Client < ApplicationRecord
 		"#{self.name} #{self.surname}"
 	end
 end
+

@@ -7,3 +7,4 @@ class Discount < ApplicationRecord
 		"#{self.name} | #{self.percentage_value}"
 	end
 end
+

@@ -12,3 +12,4 @@ class Employee < ApplicationRecord
 		"#{self.name} #{self.surname}"
 	end
 end
+
