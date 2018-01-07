@@ -15,6 +15,7 @@ class SuppliesController < ApplicationController
   # GET /supplies/new
   def new
     @supply = Supply.new
+    @supply.supplies_warehouses.build
   end
 
   # GET /supplies/1/edit
@@ -25,11 +26,11 @@ class SuppliesController < ApplicationController
   # POST /supplies.json
   def create
     @supply = Supply.new(supply_params)
-
+    @supply.date = Date.today.to_s
     respond_to do |format|
       if @supply.save
-        format.html { redirect_to @supply, notice: 'Supply was successfully created.' }
-        format.json { render :show, status: :created, location: @supply }
+        format.html { redirect_to supplies_url, notice: 'Supply was successfully created.' }
+        format.json { render :index, status: :created, location: @supply }
       else
         format.html { render :new }
         format.json { render json: @supply.errors, status: :unprocessable_entity }
@@ -42,8 +43,8 @@ class SuppliesController < ApplicationController
   def update
     respond_to do |format|
       if @supply.update(supply_params)
-        format.html { redirect_to @supply, notice: 'Supply was successfully updated.' }
-        format.json { render :show, status: :ok, location: @supply }
+        format.html { redirect_to supplies_url, notice: 'Supply was successfully updated.' }
+        format.json { render :index, status: :ok, location: @supply }
       else
         format.html { render :edit }
         format.json { render json: @supply.errors, status: :unprocessable_entity }
@@ -69,6 +70,6 @@ class SuppliesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def supply_params
-      params.require(:supply).permit(:date, :supplier_id, :status)
+      params.require(:supply).permit(:id, :supplier_id,:status, supplies_warehouses_attributes: [:warehouse_id, :amount])
     end
 end

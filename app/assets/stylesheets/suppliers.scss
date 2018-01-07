@@ -1,3 +1,17 @@
-// Place all the styles related to the Suppliers controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#supplier-list-header {
+  text-align: center;
+}
+
+.add-supplier-header {
+  margin-top: 60px;
+  margin-bottom: 10px !important;
+}
+
+.add-supplier {
+  margin-bottom: 10px !important;
+}
+
+.header-row {
+  margin-top: 60px;
+  margin-bottom: 10px !important;
+}

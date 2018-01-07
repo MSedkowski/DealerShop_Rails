@@ -1,0 +1,2 @@
+module SuppliesWarehousesHelper
+end

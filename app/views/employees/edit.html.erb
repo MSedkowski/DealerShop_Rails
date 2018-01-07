@@ -1,6 +1,6 @@
-<h1>Editing Employee</h1>
-
+<div class="main-field">
+  <div class="row header-row">
+    <h3 class="col s6 offset-s3" id="supply-list-header">Edycja pracownika nr: <%=@employee.id%></h3>
+  </div>
 <%= render 'form', employee: @employee %>
-
-<%= link_to 'Show', @employee %> |
-<%= link_to 'Back', employees_path %>
+</div>

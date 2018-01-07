@@ -1,37 +1,35 @@
-<%= form_with(model: cars_to_sell, local: true) do |form| %>
-  <% if cars_to_sell.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(cars_to_sell.errors.count, "error") %> prohibited this cars_to_sell from being saved:</h2>
+<div class="row add-supply-item">
+<%= form_for @cars_to_sell do |form| %>
 
-      <ul>
-      <% cars_to_sell.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :brand %>
+    <div class="row add-supply-item">
+      <div id="supply-item-input" class="input-field col l3 offset-l1">
     <%= form.text_field :brand, id: :cars_to_sell_brand %>
   </div>
 
-  <div class="field">
-    <%= form.label :model %>
+      <div id="supply-item-input" class="input-field col l3">
     <%= form.text_field :model, id: :cars_to_sell_model %>
   </div>
 
-  <div class="field">
-    <%= form.label :price %>
+      <div id="supply-item-input" class="input-field col l1">
     <%= form.text_field :price, id: :cars_to_sell_price %>
   </div>
 
-  <div class="field">
-    <%= form.label :additional_information %>
+      <div id="supply-item-input" class="input-field col l3">
     <%= form.text_field :additional_information, id: :cars_to_sell_additional_information %>
   </div>
+    </div>
+  <div class="row add-supply-item">
+    <div class="btn right">
+          <span>
+            <%= link_to 'Anuluj', cars_to_sells_path %>
+            <i class="material-icons right">cancel</i>
+          </span>
+    </div>
+    <button id="submit-button" class="btn waves-effect waves-light right" type="submit" name="action">
+      <i id="submit-icon" class="material-icons right">send</i>
+      <%= form.submit 'Zapisz'%>
 
-  <div class="actions">
-    <%= form.submit %>
+    </button>
   </div>
 <% end %>
+</div>

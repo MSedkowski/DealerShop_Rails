@@ -1,62 +1,68 @@
-<%= form_with(model: service_center, local: true) do |form| %>
-  <% if service_center.errors.any? %>
+<div class="row add-supply-item">
+<%= form_for @service_center do |form| %>
+  <% if @service_center.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(service_center.errors.count, "error") %> prohibited this service_center from being saved:</h2>
+      <h2><%= pluralize(@service_center.errors.count, "error") %> prohibited this service_center from being saved:</h2>
 
       <ul>
-      <% service_center.errors.full_messages.each do |message| %>
+      <% @service_center.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :brand %>
+    <div class="row add-supply-item">
+      <div id="supply-item-input" class="input-field col l4">
     <%= form.text_field :brand, id: :service_center_brand %>
   </div>
 
-  <div class="field">
-    <%= form.label :model %>
+      <div id="supply-item-input" class="input-field col l4">
     <%= form.text_field :model, id: :service_center_model %>
   </div>
 
-  <div class="field">
-    <%= form.label :license_plate %>
+      <div id="supply-item-input" class="input-field col l4">
     <%= form.text_field :license_plate, id: :service_center_license_plate %>
   </div>
-
-  <div class="field">
-    <%= form.label :status %>
+    </div>
+    <div class="row add-supply-item">
+      <div id="supply-item-input" class="input-field col l4">
     <%= form.text_field :status, id: :service_center_status %>
   </div>
 
-  <div class="field">
-    <%= form.label :client_id %>
+      <div id="supply-item-input" class="input-field col l4">
     <%= form.text_field :client_id, id: :service_center_client_id %>
   </div>
 
-  <div class="field">
-    <%= form.label :mechanic %>
+      <div id="supply-item-input" class="input-field col l4">
     <%= form.number_field :mechanic, id: :service_center_mechanic %>
   </div>
-
-  <div class="field">
-    <%= form.label :beginning_date %>
+    </div>
+    <div class="row add-supply-item">
+      <div id="supply-item-input" class="input-field col l4">
     <%= form.date_select :beginning_date, id: :service_center_beginning_date %>
   </div>
 
-  <div class="field">
-    <%= form.label :end_date %>
+      <div id="supply-item-input" class="input-field col l4">
     <%= form.date_select :end_date, id: :service_center_end_date %>
   </div>
 
-  <div class="field">
-    <%= form.label :cost %>
+      <div id="supply-item-input" class="input-field col l4">
     <%= form.text_field :cost, id: :service_center_cost %>
   </div>
+    </div>
+    <div class="row add-supply-item">
+      <div class="btn right">
+          <span>
+            <%= link_to 'Anuluj', service_centers_path %>
+            <i class="material-icons right">cancel</i>
+          </span>
+      </div>
+      <button id="submit-button" class="btn waves-effect waves-light right" type="submit" name="action">
+        <i id="submit-icon" class="material-icons right">send</i>
+        <%= form.submit 'Zapisz'%>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+      </button>
+    </div>
 <% end %>
+</div>

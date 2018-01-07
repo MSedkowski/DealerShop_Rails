@@ -1,4 +1,6 @@
-class Supply < ApplicationRecord
+class Supply < ActiveRecord::Base
   belongs_to :supplier
-  has_and_belongs_to_many :warehouse
+  has_many :supplies_warehouses, dependent: :destroy
+  has_many :warehouses, through: :supplies_warehouses
+  accepts_nested_attributes_for :supplies_warehouses, reject_if: :all_blank
 end

@@ -1,22 +1,39 @@
-<%= form_with(model: supplier, local: true) do |form| %>
-  <% if supplier.errors.any? %>
+
+<%= form_for @supplier do |form| %>
+  <% if @supplier.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(supplier.errors.count, "error") %> prohibited this supplier from being saved:</h2>
+      <h2><%= pluralize(@supplier.errors.count, "error") %> prohibited this supplier from being saved:</h2>
 
       <ul>
-      <% supplier.errors.full_messages.each do |message| %>
+      <% @supplier.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :data %>
-    <%= form.text_field :data, id: :supplier_data %>
-  </div>
+    <div class="row add-supplier">
+      <div id="supplier-input" class="input-field col l4 offset-l2">
+        <%= form.text_field :data, id: :supplier_data, placeholder: 'Wprowadź pełną nazwę dostawcy' %>
+        <label for="supplier_data" generated="true" class="error error_label"></label>
+      </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+      <div id="supplier-input" class="input-field col l4">
+        <%= form.text_field :products, id: :supplier_products, placeholder: 'Wprowadź oferowane produkty' %>
+        <label for="supplier_products" generated="true" class="error error_label"></label>
+      </div>
+    </div>
+
+    <div class="row add-supply-item">
+      <div class="btn right">
+        <span>
+          <%= link_to 'Anuluj', suppliers_path %>
+          <i class="material-icons right">cancel</i>
+        </span>
+      </div>
+      <button id="submit-button" class="btn waves-effect waves-light right" type="submit" name="action">
+        <i id="submit-icon" class="material-icons right">send</i>
+        <%= form.submit "Zapisz"%>
+      </button>
+    </div>
 <% end %>

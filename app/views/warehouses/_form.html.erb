@@ -1,32 +1,48 @@
-<%= form_with(model: warehouse, local: true) do |form| %>
-  <% if warehouse.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(warehouse.errors.count, "error") %> prohibited this warehouse from being saved:</h2>
+<div class="row add-warehouse-item">
+  <%= form_for @warehouse do |form| %>
+    <% if @warehouse.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@warehouse.errors.count, "error") %> prohibited this warehouse from being saved:</h2>
 
-      <ul>
-      <% warehouse.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+          <% @warehouse.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="row add-warehouse-item">
+      <div id="warehouse-item-input" class="input-field col l5 offset-l3">
+        <%= form.text_field :element, id: :warehouse_element, placeholder: "Nazwa elementu"%>
+        <label for="warehouse_element" generated="true" class="error error_label"></label>
+      </div>
+
+      <div id="warehouse-item-input" class="input-field col l1">
+        <%= form.text_field :amount, id: :warehouse_amount, placeholder: "Ilość"%>
+        <label for="warehouse_amount" generated="true" class="error error_label"></label>
+      </div>
+
+    </div>
+    <div class="row add-warehouse-item">
+      <div class="btn right">
+        <span>
+          <%= link_to 'Anuluj', warehouses_path %>
+          <i class="material-icons right">cancel</i>
+        </span>
+      </div>
+      <button id="submit-button" class="btn waves-effect waves-light right" type="submit" name="action">
+        <i id="submit-icon" class="material-icons right">send</i>
+        <%= form.submit "Zapisz"%>
+      </button>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :element %>
-    <%= form.text_field :element, id: :warehouse_element %>
-  </div>
-
-  <div class="field">
-    <%= form.label :amount %>
-    <%= form.number_field :amount, id: :warehouse_amount %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status, id: :warehouse_status %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
+<script>
+    <%= render "validate.js" %>
+    $(document).ready(function() {
+        $('select').material_select({
+            belowOrigin: true
+        });
+    });
+</script>

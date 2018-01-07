@@ -1,27 +1,37 @@
-<%= form_with(model: fault, local: true) do |form| %>
-  <% if fault.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(fault.errors.count, "error") %> prohibited this fault from being saved:</h2>
+<div class="row add-supply-item">
+  <%= form_for @fault do |form| %>
+    <% if @fault.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@fault.errors.count, "error") %> prohibited this fault from being saved:</h2>
 
-      <ul>
-      <% fault.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+          <% @fault.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="row add-supply-item">
+      <div id="supply-item-input" class="input-field col l5 offset-l2">
+        <%= form.text_field :name, id: :fault_name %>
+      </div>
+
+      <div id="supply-item-input" class="input-field col l3">
+        <%= form.text_field :price, id: :fault_price %>
+      </div>
     </div>
+      <div class="row add-supply-item">
+        <div class="btn right">
+          <span>
+            <%= link_to 'Anuluj', faults_path %>
+            <i class="material-icons right">cancel</i>
+          </span>
+        </div>
+        <button id="submit-button" class="btn waves-effect waves-light right" type="submit" name="action">
+          <i id="submit-icon" class="material-icons right">send</i>
+          <%= form.submit 'Zapisz'%>
+
+        </button>
+      </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :fault_name %>
   </div>
-
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price, id: :fault_price %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>

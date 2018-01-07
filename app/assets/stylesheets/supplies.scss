@@ -1,3 +1,25 @@
-// Place all the styles related to the Supplies controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.picker__date-display {
+  background-image: url("calendar_background.jpg");
+  color: #26a69a !important;
+}
+.picker__year-display {
+  color: rgba(15,65,60,0.7) !important;
+}
+
+#supply-list-header {
+  text-align: center;
+}
+
+.add-supply-item-header {
+  margin-top: 60px;
+  margin-bottom: 10px !important;
+}
+
+.add-supply-item {
+  margin-bottom: 10px !important;
+}
+
+.header-row {
+  margin-top: 60px;
+  margin-bottom: 10px !important;
+}

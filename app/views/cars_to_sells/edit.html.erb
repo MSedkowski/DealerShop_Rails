@@ -1,6 +1,6 @@
-<h1>Editing Cars To Sell</h1>
-
+<div class="main-field">
+  <div class="row header-row">
+    <h3 class="col s6 offset-s3" id="supply-list-header">Edycja auta nr: <%=@cars_to_sell.id%></h3>
+  </div>
 <%= render 'form', cars_to_sell: @cars_to_sell %>
-
-<%= link_to 'Show', @cars_to_sell %> |
-<%= link_to 'Back', cars_to_sells_path %>
+</div>

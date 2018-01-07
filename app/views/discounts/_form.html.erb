@@ -1,37 +1,35 @@
-<%= form_with(model: discount, local: true) do |form| %>
-  <% if discount.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(discount.errors.count, "error") %> prohibited this discount from being saved:</h2>
+<div class="row add-supply-item">
+<%= form_for @discount do |form| %>
 
-      <ul>
-      <% discount.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :discount_name %>
+    <div class="row add-supply-item">
+      <div id="supply-item-input" class="input-field col l4 offset-l1">
     <%= form.text_field :discount_name, id: :discount_discount_name %>
   </div>
 
-  <div class="field">
-    <%= form.label :start_date %>
+      <div id="supply-item-input" class="input-field col l2">
     <%= form.date_select :start_date, id: :discount_start_date %>
   </div>
 
-  <div class="field">
-    <%= form.label :end_date %>
+      <div id="supply-item-input" class="input-field col l2">
     <%= form.date_select :end_date, id: :discount_end_date %>
   </div>
 
-  <div class="field">
-    <%= form.label :percentage_value %>
+      <div id="supply-item-input" class="input-field col l2">
     <%= form.text_field :percentage_value, id: :discount_percentage_value %>
   </div>
+    </div>
+    <div class="row add-supply-item">
+      <div class="btn right">
+          <span>
+            <%= link_to 'Anuluj', discounts_path %>
+            <i class="material-icons right">cancel</i>
+          </span>
+      </div>
+      <button id="submit-button" class="btn waves-effect waves-light right" type="submit" name="action">
+        <i id="submit-icon" class="material-icons right">send</i>
+        <%= form.submit 'Zapisz'%>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+      </button>
+    </div>
 <% end %>
+</div>

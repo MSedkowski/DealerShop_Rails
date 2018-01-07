@@ -11,11 +11,12 @@ Rails.application.routes.draw do
   resources :cars_to_sell_discounts
   resources :rentings
   resources :rental_cars
-  resources :warehouses
+  resources :warehouses, has_many: :supplies
   resources :service_centers
   resources :faults
   resources :suppliers
-  resources :supplies
+  resources :supplies, has_many: :warehouses
+  resources :discounts
 
   root 'main#index'
   # The priority is based upon order of creation: first created -> highest priority.
