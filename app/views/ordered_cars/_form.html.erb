@@ -14,22 +14,26 @@
 
     <div class="row add-order-car">
       <div id="order-car-input" class="input-field col l3 offset-l2">
-        <%= form.collection_select :car_id, CarsToSell.all,
+        <%= form.collection_select :cars_to_sell_id, CarsToSell.all,
                                    :id, :combined_value,
                                    include_blank: "Wybierz samochód",
                                    id: :ordered_car_car_id%>
-  </div>
+        <label for="ordered_car_car_id" generated="true" class="error error_label"></label>
+
+      </div>
 
       <div id="order-car-input" class="input-field col l3">
         <%= form.collection_select :client_id, Client.all,
                                    :id, :combined_value,
                                    include_blank: "Wybierz klienta",
                                    id: :ordered_car_client_id%>
+        <label for="ordered_car_client_id" generated="true" class="error error_label"></label>
   </div>
 
       <div id="order-car-input" class="input-field col l2">
-        <%= form.select(:status, [['Zebrano', 'Zebrano'], ['Zamówiono', 'Zamówiono'],
+        <%= form.select(:status, [['Zamówiono', 'Zamówiono'], ['Zapłacono', 'Zapłacono'],
                                          ['Odebrano', 'Odebrano']], include_blank: 'Wybierz status') %>
+        <label for="ordered_car_status" generated="true" class="error error_label"></label>
   </div>
     </div>
     <div class="row add-supply-item">
@@ -49,11 +53,12 @@
 </div>
 <script>
     $(document).ready(function() {
-
+        <%= render "validate.js" %>
         $('select').material_select({
 
             belowOrigin: true
 
         });
+        $(".initialized").css({display: "none", height: 0, padding: 0, width: 0});
     });
 </script>

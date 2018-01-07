@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180106183451) do
+ActiveRecord::Schema.define(version: 20180106220811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20180106183451) do
   end
 
   create_table "ordered_cars", id: :serial, force: :cascade do |t|
-    t.integer "car_id", null: false
+    t.integer "cars_to_sell_id", null: false
     t.integer "client_id", null: false
     t.string "status", limit: 20, null: false
   end
@@ -149,7 +149,7 @@ ActiveRecord::Schema.define(version: 20180106183451) do
 
   add_foreign_key "cars_to_sell_discounts", "cars_to_sell", name: "car_id"
   add_foreign_key "cars_to_sell_discounts", "discounts", name: "discount_id"
-  add_foreign_key "ordered_cars", "cars_to_sell", column: "car_id", name: "car_id"
+  add_foreign_key "ordered_cars", "cars_to_sell", name: "car_id"
   add_foreign_key "ordered_cars", "clients", name: "client_id"
   add_foreign_key "rentings", "clients", name: "client_id"
   add_foreign_key "rentings", "rental_cars", name: "rental_car_id"
