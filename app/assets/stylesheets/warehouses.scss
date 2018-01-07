@@ -11,25 +11,6 @@
   margin-bottom: 10px !important;
 }
 
-::-webkit-input-placeholder {
-  color: #000000 !important;
-  opacity: 1 !important; /* for older chrome versions. may no longer apply. */
-}
-
-:-moz-placeholder { /* Firefox 18- */
-  color: #000000 !important;
-  opacity: 1 !important;
-}
-
-::-moz-placeholder {  /* Firefox 19+ */
-  color: #000000 !important;
-  opacity: 1 !important;
-}
-
-:-ms-input-placeholder {
-  color: #000000 !important;
-}
-
 .link {
   margin-right: 15px;
   width: 60px;
@@ -39,7 +20,3 @@
   background-color: #fff !important;
 }
 
-.header-row {
-  margin-top: 60px;
-  margin-bottom: 10px !important;
-}

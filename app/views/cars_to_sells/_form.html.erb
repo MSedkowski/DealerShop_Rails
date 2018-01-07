@@ -1,16 +1,5 @@
 <div class="row add-supply-item">
 <%= form_for @cars_to_sell do |form| %>
-  <% if @cars_to_sell.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@cars_to_sell.errors.count, "error") %> prohibited this cars_to_sell from being saved:</h2>
-
-      <ul>
-      <% @cars_to_sell.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
     <div class="row add-cars-to-sell">
       <div id="new-car-input" class="input-field col l3 offset-l1">
