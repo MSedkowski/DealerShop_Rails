@@ -15,13 +15,12 @@
   </thead>
 
   <tbody>
-    <% @vacations.each do |vacation| %>
+    <% @vacations.sort.each do |vacation| %>
       <tr>
-        <td><%= vacation.employee %></td>
-        <td><%= vacation.beginning_date %></td>
+        <td><%= vacation.employee.combined_value %></td>
+        <td><%= vacation.start_date %></td>
         <td><%= vacation.end_date %></td>
         <td><%= vacation.how_many_days %></td>
-        <td><%= link_to 'Pokaż', vacation %></td>
         <td><%= link_to 'Edytuj', edit_vacation_path(vacation) %></td>
         <td><%= link_to 'Usuń', vacation, method: :delete, data: { confirm: 'Czy jesteś pewien?' } %></td>
       </tr>

@@ -6,13 +6,22 @@ Rails.application.routes.draw do
   resources :employees
   resources :cars_to_sells
   resources :vacations
-  resources :vacation_requests
+  resources :vacation_requests do
+    member do
+      get 'accept'
+      get 'reject'
+    end
+  end
   resources :ordered_cars
   resources :cars_to_sell_discounts
   resources :rentings
   resources :rental_cars
   resources :warehouses, has_many: :supplies
-  resources :service_centers
+  resources :service_centers do
+    member do
+      get 'close'
+    end
+  end
   resources :faults
   resources :suppliers
   resources :supplies, has_many: :warehouses

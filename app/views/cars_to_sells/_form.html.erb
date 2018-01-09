@@ -21,18 +21,17 @@
   </div>
 
       <div id="new-car-input" class="input-field col l3">
-        <%= form.label :additional_information, "Podaj dodatkowe informację" %>
+        <%= form.label :additional_information, "Podaj dodatkowe informacje" %>
     <%= form.text_field :additional_information, id: :cars_to_sell_additional_information %>
         <label for="cars_to_sell_additional_information" generated="true" class="error error_label"></label>
   </div>
     </div>
   <div class="row add-cars-to-sell">
-    <div class="btn right">
-          <span>
-            <%= link_to 'Anuluj', cars_to_sells_path %>
-            <i class="material-icons right">cancel</i>
-          </span>
-    </div>
+    <%= link_to content_tag(:div, '',class: 'btn right') {
+      content_tag(:span, 'Anuluj') +
+          content_tag(:i, 'cancel', class: 'material-icons right')
+    }, cars_to_sells_path %>
+
     <button id="submit-button" class="btn waves-effect waves-light right" type="submit" name="action">
       <i id="submit-icon" class="material-icons right">send</i>
       <%= form.submit 'Zapisz'%>

@@ -27,10 +27,12 @@ class EmployeesController < ApplicationController
     @employee = Employee.new(employee_params)
 
     respond_to do |format|
-      if @employee.save
+      begin
+        @employee.save
         format.html { redirect_to employees_path, notice: 'Employee was successfully created.' }
         format.json { render :index, status: :created, location: @employee }
-      else
+      rescue ActiveRecord::RecordNotUnique
+        flash.now[:error] =  'Podany email jest już w bazie.'
         format.html { render :new }
         format.json { render json: @employee.errors, status: :unprocessable_entity }
       end
@@ -41,10 +43,12 @@ class EmployeesController < ApplicationController
   # PATCH/PUT /employees/1.json
   def update
     respond_to do |format|
-      if @employee.update(employee_params)
+      begin
+        @employee.update(employee_params)
         format.html { redirect_to employees_path, notice: 'Employee was successfully updated.' }
         format.json { render :index, status: :ok, location: @employee }
-      else
+      rescue ActiveRecord::RecordNotUnique
+        flash.now[:error] =  'Podany email jest już w bazie.'
         format.html { render :edit }
         format.json { render json: @employee.errors, status: :unprocessable_entity }
       end

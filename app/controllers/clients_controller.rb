@@ -5,6 +5,9 @@ class ClientsController < ApplicationController
   # GET /clients.json
   def index
     @clients = Client.all
+    @clients.each do |client|
+      check(client.id)
+    end
   end
 
   # GET /clients/1
@@ -62,14 +65,34 @@ class ClientsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_client
-      @client = Client.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_client
+    @client = Client.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def client_params
-      params.require(:client).permit(:name, :surname, :email, :phone_number, :password, :employee_id, :use_renting, :use_service, :buy_car)
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def client_params
+    params.require(:client).permit(:name, :surname, :email, :phone_number, :password, :employee_id, :use_renting, :use_service, :buy_car)
+  end
+
+  def check(id)
+    @client = Client.find(id)
+    if Renting.where(client_id: @client.id).empty?
+      @client.use_renting = false
+    else
+      @client.use_renting = true
     end
+    if ServiceCenter.where(client_id: @client.id).empty?
+      @client.use_service = false
+    else
+      @client.use_service = true
+    end
+    if OrderedCar.where(client_id: @client.id).empty?
+      @client.buy_car = false
+    else
+      @client.buy_car = true
+    end
+    @client.save!
+  end
 
 end

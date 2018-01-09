@@ -103,12 +103,10 @@
 
     </div>
     <div class="row add-supply-item">
-      <div class="btn right">
-          <span>
-            <%= link_to 'Anuluj', service_centers_path %>
-            <i class="material-icons right">cancel</i>
-          </span>
-      </div>
+      <%= link_to content_tag(:div, '',class: 'btn right') {
+        content_tag(:span, 'Anuluj') +
+            content_tag(:i, 'cancel', class: 'material-icons right')
+      }, service_centers_path %>
       <button id="submit-button" class="btn waves-effect waves-light right" type="submit" name="action">
         <i id="submit-icon" class="material-icons right">send</i>
         <%= form.submit 'Zapisz'%>
@@ -192,12 +190,16 @@
             return false;
         });
         $('#delete-service').on('click', function() {
-            var cost = parseInt($("#service_center_cost").attr('value'));
-            cost = parseInt(cost) - parseInt($(".services").last().find("span[id=FaultCost_0]").text());
-            $("#service_center_cost").attr('value', cost);
-            $(".services").last().find("span[id='FaultCost_0']").attr('type', 'hidden');
-            $(".services").last().find("input[name*='_destroy']").attr('value', true);
-            $(".services").last().hide().attr('class', "service-delete");
+            if ($('.services').length != 1) {
+                var cost = parseInt($("#service_center_cost").attr('value'));
+                console.log(cost);
+                cost -= parseInt($(".services").last().find("span[id*='FaultCost']").text());
+                console.log($(".services").last().find("span[id*='FaultCost']").text());
+                $("#service_center_cost").attr('value', cost);
+            };
+            $(".services:not(:first)").last().find("span[id='FaultCost_0']").attr('type', 'hidden');
+            $(".services:not(:first)").last().find("input[name*='_destroy']").attr('value', true);
+            $(".services:not(:first)").last().hide().attr('class', "service-delete");
         });
     });
 </script>

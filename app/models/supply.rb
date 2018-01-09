@@ -2,5 +2,5 @@ class Supply < ActiveRecord::Base
   belongs_to :supplier
   has_many :supplies_warehouses, dependent: :destroy
   has_many :warehouses, through: :supplies_warehouses
-  accepts_nested_attributes_for :supplies_warehouses, reject_if: :all_blank
+  accepts_nested_attributes_for :supplies_warehouses, reject_if: :all_blank, allow_destroy: true
 end

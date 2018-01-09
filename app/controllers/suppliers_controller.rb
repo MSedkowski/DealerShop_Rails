@@ -26,10 +26,12 @@ class SuppliersController < ApplicationController
     @supplier = Supplier.new(supplier_params)
 
     respond_to do |format|
-      if @supplier.save
+      begin
+      @supplier.save
         format.html { redirect_to suppliers_url, notice: 'Supplier was successfully created.' }
         format.json { render :index, status: :created, location: @supplier }
-      else
+      rescue ActiveRecord::RecordNotUnique
+        flash.now[:error] =  'Dostawca o podanej nazwie już istnieje.'
         format.html { render :new }
         format.json { render json: @supplier.errors, status: :unprocessable_entity }
       end

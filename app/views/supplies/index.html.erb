@@ -29,7 +29,7 @@
             <% end %></td>
           <td><%= supply.status %></td>
           <td><% if supply.status != 'Odebrano'%>
-              <%= link_to 'Edytuj', edit_supply_path(supply) %>
+              <%= link_to 'Edytuj', edit_supply_path(supply.id) %>
             <%end%></td>
           <td><% if supply.status != 'Odebrano'%>
               <%= link_to 'Usuń', supply, method: :delete, data: { confirm: 'Czy jesteś pewien?' } %>

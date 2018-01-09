@@ -2,7 +2,7 @@ $.validator.setDefaults({
     ignore: []
 });
 
-$("#new_supply").validate({
+$("#edit_supply").validate({
     //error place
     errorPlacement: function (error, element) {
         error.appendTo( element.parent("div").next("div") );
@@ -25,4 +25,8 @@ $("#new_supply").validate({
             required: "Należy wybrać status."
         }
     }
+});
+
+$.validator.setDefaults({
+    ignore: []
 });

@@ -28,8 +28,8 @@ class VacationRequestsController < ApplicationController
 
     respond_to do |format|
       if @vacation_request.save
-        format.html { redirect_to @vacation_request, notice: 'Vacation request was successfully created.' }
-        format.json { render :show, status: :created, location: @vacation_request }
+        format.html { redirect_to vacation_requests_path, notice: 'Vacation request was successfully created.' }
+        format.json { render :index, status: :created, location: @vacation_request }
       else
         format.html { render :new }
         format.json { render json: @vacation_request.errors, status: :unprocessable_entity }
@@ -42,8 +42,8 @@ class VacationRequestsController < ApplicationController
   def update
     respond_to do |format|
       if @vacation_request.update(vacation_request_params)
-        format.html { redirect_to @vacation_request, notice: 'Vacation request was successfully updated.' }
-        format.json { render :show, status: :ok, location: @vacation_request }
+        format.html { redirect_to vacation_requests_path, notice: 'Vacation request was successfully updated.' }
+        format.json { render :index, status: :ok, location: @vacation_request }
       else
         format.html { render :edit }
         format.json { render json: @vacation_request.errors, status: :unprocessable_entity }
@@ -59,6 +59,21 @@ class VacationRequestsController < ApplicationController
       format.html { redirect_to vacation_requests_url, notice: 'Vacation request was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def accept
+    @vacation_request = VacationRequest.find(params[:id])
+    Vacation.create(@vacation_request.attributes.reject { |k,v| k == 'status' })
+    @vacation_request.status = 'Zgoda'
+    @vacation_request.save!
+    redirect_to vacation_requests_path
+  end
+
+  def reject
+    @vacation_request = VacationRequest.find(params[:id])
+    @vacation_request.status = 'Odmowa'
+    @vacation_request.save!
+    redirect_to vacation_requests_path
   end
 
   private

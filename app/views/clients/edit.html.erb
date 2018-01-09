@@ -1,6 +1,6 @@
-<h1>Editing Client</h1>
-
+<div class="main-field">
+  <div class="row header-row">
+    <h3 class="col l8 offset-l2" id="supply-list-header">Edycja klienta: <%=@client.combined_value%></h3>
+  </div>
 <%= render 'form', client: @client %>
-
-<%= link_to 'Show', @client %> |
-<%= link_to 'Back', clients_path %>
+</div>

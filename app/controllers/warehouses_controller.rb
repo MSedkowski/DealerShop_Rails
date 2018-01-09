@@ -27,11 +27,13 @@ class WarehousesController < ApplicationController
     @warehouse = Warehouse.new(warehouse_params)
 
     respond_to do |format|
-      if @warehouse.save
+    begin
+      @warehouse.save
         format.html { redirect_to warehouses_url, notice: 'Warehouse element was successfully created.' }
         format.json { render :index, status: :created, location: @warehouse }
-      else
-        format.html { render :new }
+    rescue ActiveRecord::RecordNotUnique
+      flash.now[:error] =  'Element o podanej nazwie już istnieje.'
+      format.html { render :new}
         format.json { render json: @warehouse.errors, status: :unprocessable_entity }
       end
     end
@@ -41,10 +43,12 @@ class WarehousesController < ApplicationController
   # PATCH/PUT /warehouses/1.json
   def update
     respond_to do |format|
-      if @warehouse.update(warehouse_params)
+      begin
+        @warehouse.update(warehouse_params)
         format.html { redirect_to warehouses_url, notice: 'Warehouse element was successfully updated.' }
         format.json { render :index, status: :ok, location: @warehouse }
-      else
+      rescue ActiveRecord::RecordNotUnique
+        flash.now[:error] =  'Element o podanej nazwie już istnieje.'
         format.html { render :edit }
         format.json { render json: @warehouse.errors, status: :unprocessable_entity }
       end

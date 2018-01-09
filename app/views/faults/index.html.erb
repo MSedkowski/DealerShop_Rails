@@ -18,7 +18,6 @@
         <td><%= fault.name %></td>
         <td><%= fault.price %></td>
         <td><%= link_to 'Edytuj', edit_fault_path(fault) %></td>
-        <td><%= link_to 'Usuń', fault, method: :delete, data: { confirm: 'Czy jesteś pewien?' } %></td>
       </tr>
     <% end %>
   </tbody>

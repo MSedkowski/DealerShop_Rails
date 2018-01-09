@@ -37,12 +37,10 @@
   </div>
     </div>
     <div class="row add-supply-item">
-      <div class="btn right">
-          <span>
-            <%= link_to 'Anuluj', rentings_path %>
-            <i class="material-icons right">cancel</i>
-          </span>
-      </div>
+      <%= link_to content_tag(:div, '',class: 'btn right') {
+        content_tag(:span, 'Anuluj') +
+            content_tag(:i, 'cancel', class: 'material-icons right')
+      }, rentings_path %>
       <button id="submit-button" class="btn waves-effect waves-light right" type="submit" name="action">
         <i id="submit-icon" class="material-icons right">send</i>
         <%= form.submit 'Zapisz'%>

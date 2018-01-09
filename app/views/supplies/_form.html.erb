@@ -1,11 +1,11 @@
 <div class="row add-supply-item">
   <%= form_for @supply do |supply_form| %>
-    <% if supply.errors.any? %>
+    <% if @supply.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(supply.errors.count, "error") %> prohibited this supply from being saved:</h2>
+        <h2><%= pluralize(@supply.errors.count, "error") %> prohibited this supply from being saved:</h2>
 
         <ul>
-          <% supply.errors.full_messages.each do |message| %>
+          <% @supply.errors.full_messages.each do |message| %>
             <li><%= message %></li>
           <% end %>
         </ul>
@@ -27,12 +27,29 @@
         <label for="supply_status" generated="true" class="error error_label"></label>
       </div>
     </div>
-    <div id="product-list">
-      <div class="row add-supply-item">
+    <div class="row add-supply-item">
+
+      <div class="col l2 offset-l1">
+        <a class="btn-floating btn-medium waves-effect waves-light green" id="add-product">
+          <i class="material-icons">add</i></a>
+        <a class="btn-floating btn-medium waves-effect waves-light red" id="delete-product">
+          <i class="material-icons">remove</i></a>
+      </div>
+
+      <div id="service-center" class="input-field col l2 offset-l2">
+        <h5 class="center">Lista elementów:</h5>
+      </div>
+
+    </div>
+
+
+
         <%= supply_form.fields_for :supplies_warehouses do |amount_field| %>
           <div class="products">
+            <div class="row add-supply-item">
           <div id="warehouse-product" class="input-field col l3 offset-l4">
             <%= amount_field.collection_select :warehouse_id, Warehouse.all, :id, :element, :prompt => 'Wybierz produkt'%>
+            <%= amount_field.hidden_field(:_destroy) %>
             <label for="supply_supplies_warehouses_attributes_0_warehouse_id" generated="true" class="error error_label warehouse"></label>
           </div>
 
@@ -43,19 +60,13 @@
           </div>
           </div>
       </div>
-          <a class="btn-floating btn-medium waves-effect waves-light green" id="add-product"><i class="material-icons">add</i></a>
-          <a class="btn-floating btn-medium waves-effect waves-light red" id="delete-product"><i class="material-icons">remove</i></a>
-          </div>
         <% end %>
-    </div>
 
     <div class="row add-supply-item">
-      <div class="btn right">
-          <span>
-            <%= link_to 'Anuluj', supplies_path %>
-            <i class="material-icons right">cancel</i>
-          </span>
-      </div>
+      <%= link_to content_tag(:div, '',class: 'btn right') {
+        content_tag(:span, 'Anuluj') +
+            content_tag(:i, 'cancel', class: 'material-icons right')
+      }, supplies_path %>
       <button id="submit-button" class="btn waves-effect waves-light right" type="submit" name="action">
         <i id="submit-icon" class="material-icons right">send</i>
         <%= supply_form.submit 'Zapisz'%>
@@ -66,32 +77,41 @@
   </div>
   <script>
       $(document).ready(function() {
-          <%= render "validate.js" %>
+          var name = $(document).find("form").attr('class');
+          if (name === 'edit_supply') {
+              <%= render "validateEdit.js" %> }
+          else {
+              <%= render "validateNew.js" %>
+              $(".initialized").css({display: "none", height: 0, padding: 0, width: 0});
+              $("input[id*='amount']").each(function() {
+                  $(this).rules('add', {
+                      required: true,
+                      minValue: 0,
+                      messages: {
+                          required: "Należy podać liczbę",
+                          minValue: "Liczba musi być większa niż 0"
+                      }
+                  });
+              });
+
+              $("select[name*='warehouse_id']").each(function() {
+                  $(this).rules('add', {
+                      required: true,
+                      messages: {
+                          required: "Należy wybrać produkt"
+                      }
+                  });
+              });
+          }
           $('select').material_select({
 
               belowOrigin: true
 
           });
           $(".initialized").css({display: "none", height: 0, padding: 0, width: 0});
-          $("input[id*='amount']").each(function() {
-              $(this).rules('add', {
-                  required: true,
-                  minValue: 0,
-                  messages: {
-                      required: "Należy podać liczbę",
-                      minValue: "Liczba musi być większa niż 0"
-                  }
-              });
-          });
 
-          $("select[name*='warehouse_id']").each(function() {
-              $(this).rules('add', {
-                  required: true,
-                  messages: {
-                      required: "Należy wybrać produkt"
-                  }
-              });
-          });
+
+
           $('#add-product').on('click', function() {
 
               var date = new Date();
@@ -105,15 +125,22 @@
                   "supply_supplies_warehouses_attributes_0_amount".replace("0", mSec);
               nameAttributAmount =
                   "supply[supplies_warehouses_attributes][0][amount]".replace("0", mSec);
-              $(".products").clone(true).attr('class', 'product-clone').appendTo("#product-list");
-              $(".product-clone").find("#supply_supplies_warehouses_attributes_0_warehouse_id").attr('name', nameAttributProduct);
-              $(".product-clone").find("#supply_supplies_warehouses_attributes_0_warehouse_id").attr('id', idAttributProduct);
-              $(".product-clone").find(".warehouse").attr('for', idAttributProduct);
-              $(".product-clone").find(".amount").attr('for', idAttributAmount);
-              $(".product-clone").find(".select-dropdown").addClass(idAttributProduct);
-              $(".product-clone").find("#supply_supplies_warehouses_attributes_0_amount").attr('name', nameAttributAmount);
-              $(".product-clone").find("#supply_supplies_warehouses_attributes_0_amount").attr('id', idAttributAmount);
 
+              idAttributDestroy =
+                  "supply_supplies_warehouses_attributes_0__destroy".replace("0", mSec);
+              nameAttributDestroy =
+                  "supply[supplies_warehouses_attributes][0][_destroy]".replace("0", mSec);
+
+              $(".products:first").clone(true).insertAfter(".products:last");
+              $(".products").last().find("#supply_supplies_warehouses_attributes_0_warehouse_id").attr('name', nameAttributProduct);
+              $(".products").last().find("#supply_supplies_warehouses_attributes_0_warehouse_id").attr('id', idAttributProduct);
+              $(".products").last().find(".warehouse").attr('for', idAttributProduct);
+              $(".products").last().find(".amount").attr('for', idAttributAmount);
+              $(".products").last().find(".select-dropdown").addClass(idAttributProduct);
+              $(".products").last().find("#supply_supplies_warehouses_attributes_0_amount").attr('name', nameAttributAmount);
+              $(".products").last().find("#supply_supplies_warehouses_attributes_0_amount").attr('id', idAttributAmount);
+              $(".products").last().find("input[name*='_destroy']").attr('name', nameAttributDestroy);
+              $(".products").last().find("input[name*='_destroy']").attr('id', idAttributDestroy);
               $("input[id*='amount']").each(function() {
                   $(this).rules('add', {
                       required: true,
@@ -139,7 +166,8 @@
               return false;
           });
           $('#delete-product').on('click', function() {
-             $(".product-clone").last().remove()
+              $(".products").last().find("input[name*='_destroy']").attr('value', true);
+              $(".products:not(:first)").last().hide().attr('class', "product-delete");
           });
       });
   </script>

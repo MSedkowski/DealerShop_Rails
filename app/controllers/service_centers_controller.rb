@@ -1,5 +1,5 @@
 class ServiceCentersController < ApplicationController
-  before_action :set_service_center, only: [:show, :edit, :update, :destroy]
+  before_action :set_service_center, only: [:show, :edit, :update, :destroy, :close]
 
   # GET /service_centers
   # GET /service_centers.json
@@ -68,6 +68,13 @@ class ServiceCentersController < ApplicationController
       format.html { redirect_to service_centers_url, notice: 'Service center was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def close
+    @service_center.status = 'Zakończono'
+    @service_center.end_date = Date.today().to_s
+    @service_center.save!
+    redirect_to service_centers_path
   end
 
   private

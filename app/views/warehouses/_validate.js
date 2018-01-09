@@ -12,7 +12,8 @@ $("#new_warehouse").validate({
         },
         "warehouse[amount]":{
             required: true,
-            min: 1
+            number: true,
+            min: 0
         }
     },
     //error messages
@@ -23,7 +24,9 @@ $("#new_warehouse").validate({
         },
         "warehouse[amount]":{
             required: "Należy podać liczbę.",
-            min: "Minimalna wartość to 1"
+            number: "Niepoprawne znaki.",
+            min: "Minimalna wartość to 0"
+
         }
     }
 });

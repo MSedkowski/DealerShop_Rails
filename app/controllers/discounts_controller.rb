@@ -28,10 +28,12 @@ class DiscountsController < ApplicationController
     @discount = Discount.new(discount_params)
 
     respond_to do |format|
-      if @discount.save
+      begin
+        @discount.save
         format.html { redirect_to discounts_path, notice: 'Discount was successfully created.' }
         format.json { render :index, status: :created, location: @discount }
-      else
+      rescue ActiveRecord::RecordNotUnique
+        flash.now[:error] =  'Zniżka o podanej nazwie już istnieje.'
         format.html { render :new }
         format.json { render json: @discount.errors, status: :unprocessable_entity }
       end
@@ -42,10 +44,12 @@ class DiscountsController < ApplicationController
   # PATCH/PUT /discounts/1.json
   def update
     respond_to do |format|
-      if @discount.update(discount_params)
+      begin
+        @discount.update(discount_params)
         format.html { redirect_to discounts_path, notice: 'Discount was successfully updated.' }
         format.json { render :index, status: :ok, location: @discount }
-      else
+      rescue ActiveRecord::RecordNotUnique
+        flash.now[:error] =  'Zniżka o podanej nazwie już istnieje.'
         format.html { render :edit }
         format.json { render json: @discount.errors, status: :unprocessable_entity }
       end
